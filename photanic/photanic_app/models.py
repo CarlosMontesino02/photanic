@@ -1,4 +1,7 @@
+from pyexpat import model
+from statistics import mode
 from unicodedata import category
+from unittest.util import _MAX_LENGTH
 from django.db import models
 class Usuario(models.Model):
     nomUsu = models.CharField(max_length=18, primary_key=True)
@@ -48,4 +51,16 @@ class Comentario(models.Model):
     photo = models.ForeignKey(Foto, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
     time = models.DateTimeField()
+
+class Articulo(models.Model):
+    id_art = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=23)
+    text = models.CharField(max_length=1500)
+    Usu_art = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    plant_art = models.ForeignKey(Planta, on_delete=models.CASCADE)
+
+class Valoracion(models.Model):
+    Usu_valo = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    art_valo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
+    rate = models.IntegerField()
     # Create your models here.
