@@ -1,0 +1,51 @@
+<style type="text/css">
+    #BarraHTML {
+    background-color: #100000;
+        padding: 2px;
+        position: fixed;
+        width: 100%;
+    z-index: 10000;
+    }
+    #BarraHTML ul{
+       list-style-type: none;
+    }
+    #BarraHTML li{
+       display: inline;
+       text-align: center;
+       margin: 0 0 0 0;
+    }
+    #BarraHTML li a {
+       padding: 2px 7px 7px 7px;
+       text-decoration: none;
+    }
+    #BarraHTML a{
+      color: white;
+    }
+    #BarraHTML li a:hover{
+       background-color: #333333;
+       color: #ffffff;
+    }
+    #texto{
+    padding: 60px 0 0 0;
+    }
+    li{
+      border: 1px solid black;
+      height: 30px;
+      width: 150px;
+      color:white
+    }
+       </style>
+    <body style="background-color:#c6ff6a;">
+    <div id="BarraHTML">
+    <ul>
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'plants' %}">Plantas</a></li>
+    <li><a href="{% url 'fotos' %}">Fotos</a></li>
+    <li><a href="{% url 'profiles' %}">Usuarios</a></li>
+    <li><a href="{% url 'articles' %}">Artícuos</a></li>
+    </ul>
+    </div>
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
