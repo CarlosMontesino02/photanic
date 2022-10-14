@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from photanic_app.views import index, Lista_plantas, Lista_fotos, Lista_comentarios, Lista_valoraciones, Lista_Articulos, Lista_usuarios
+from photanic_app.views import Detalles_plantas, Detalles_fotos, Detalles_comentarios, Detalles_valoraciones, Detalles_articulos, Detalles_usuarios
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('plants/', Lista_plantas.as_view(), name="plants"),
+    path('', index, name='index'),
+    path('photos/',Lista_fotos.as_view(), name="fotos"),
+    path('articles/', Lista_Articulos.as_view(), name="articles"),
+    path('profiles/', Lista_usuarios.as_view(), name="profiles"),
+    path('plants/<int:pk>/', Detalles_plantas.as_view(), name='plants_details'),
+    path('articles/<int:pk>/', Detalles_articulos.as_view(), name="articles_details"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
