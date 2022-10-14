@@ -1,6 +1,15 @@
 <style type="text/css">
+   li{
+      border: 1px solid rgb(255, 255, 255);
+      height: 30px;
+      width: 150px;
+   }
+    a{
+      color: rgb(0, 236, 0)
+    }
+
     #BarraHTML {
-    background-color: #100000;
+    background-color: #ffffff;
         padding: 2px;
         position: fixed;
         width: 100%;
@@ -18,34 +27,46 @@
        padding: 2px 7px 7px 7px;
        text-decoration: none;
     }
-    #BarraHTML a{
-      color: white;
+    #BarraHTML a{  /*color del texto */ 
+      color: rgb(28, 139, 0);
+      font-weight: bold;
     }
     #BarraHTML li a:hover{
-       background-color: #333333;
+       background-color: #ffffff;
        color: #ffffff;
     }
     #texto{
     padding: 60px 0 0 0;
+    color: rgb(0, 236, 0)
     }
-    li{
-      border: 1px solid black;
-      height: 30px;
-      width: 150px;
-      color:white
-    }
-       </style>
-    <body style="background-color:#c6ff6a;">
+   .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: rgb(255, 255, 255);
+   color: rgb(28, 139, 0);
+   text-align: center;
+   font-weight: bold;
+   }
+</style>
     <div id="BarraHTML">
     <ul>
-    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'index' %}">Photanic</a></li>
     <li><a href="{% url 'plants' %}">Plantas</a></li>
     <li><a href="{% url 'fotos' %}">Fotos</a></li>
     <li><a href="{% url 'profiles' %}">Usuarios</a></li>
-    <li><a href="{% url 'articles' %}">Artícuos</a></li>
+    <li><a href="{% url 'articles' %}">Artículos</a></li>
     </ul>
     </div>
+    <body style="background-color:#c6ff6a;">
     <div>
         {% block content %}
         {% endblock %}
-    </div>
+        
+      <div class="footer">
+       <p>
+         <a href="">About Us</a> 
+         <a href="">Contact</a>
+      </p>
+      </div>
