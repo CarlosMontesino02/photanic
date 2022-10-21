@@ -3,7 +3,8 @@ from photanic_app.models import Usuario, Planta, Foto, Comentario, Articulo, Val
 from django.views.generic import DetailView
 from django.views.generic.edit import FormView
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 
 def index (request):
@@ -44,4 +45,32 @@ class Lista_usuarios(ListView):
 
 class Detalles_usuarios(DetailView):
     model = Usuario
+
+class plantcreateview(CreateView):
+    model = Planta
+    fields = ['id','kingdom','phylum','clase','order','family','genus','category']
+    success_url = reverse_lazy('')
+
+class plantUpdateView(UpdateView):
+    model = Planta
+    fields = ['id','kingdom','phylum','clase','order','family','genus','category']
+
+class fotocreateview(CreateView):
+    model = Foto
+    fields = ['id','Usu','plant','img','place','descrip','time_stamp']
+    success_url = reverse_lazy('')
+
+class fotoUpdateView(UpdateView):
+    model = Foto
+    fields = ['id','Usu','plant','img','place','descrip','time_stamp']
+
+class comentcreateview(CreateView):
+    model = Comentario
+    fields=['Usu','photo','text','time']
+    success_url = reverse_lazy('photos')
+
+class comentUpdateView(UpdateView):
+    model = Comentario
+    fields=['Usu','photo','text','time']
+    success_url = reverse_lazy('photos')
 # Create your views here.

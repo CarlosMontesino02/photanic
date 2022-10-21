@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+        <center><h1>Artículos</h1></center>
+    <body style="background-color:#a1ff75;">
+        <center>
+        <ul>
+          {% for articulo in object_list %}
+          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ articulo.id_art }}">{{ articulo.title }}</a>
+          </li>
+          {% empty %}
+          <li>No hay artículos todavía.</li>
+          {% endfor %}
+        </ul>
+        </center>
+    </body>
+{% endblock %}

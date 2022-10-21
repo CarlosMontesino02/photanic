@@ -3,8 +3,10 @@ from statistics import mode
 from unicodedata import category
 from unittest.util import _MAX_LENGTH
 from django.db import models
+
 class Usuario(models.Model):
-    nomUsu = models.CharField(max_length=18, primary_key=True)
+    id_usu =models.IntegerField(primary_key=True)
+    nomUsu = models.CharField(max_length=18)
     mail = models.EmailField(max_length=254)
     country = models.CharField(max_length=20)
     new = 'NW'
@@ -25,6 +27,8 @@ class Usuario(models.Model):
     default=amateur,
     )
     birth_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    def __str__(self):
+        return self.nomUsu
 
 class Planta(models.Model):
     common_name = models.CharField(max_length=23, primary_key=True)
@@ -36,6 +40,8 @@ class Planta(models.Model):
     family = models.CharField(max_length=23)
     genus = models.CharField(max_length=23)
     category = models.CharField(max_length=23)
+    def __str__(self):
+        return self.common_name
 
 class Foto(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -58,6 +64,8 @@ class Articulo(models.Model):
     text = models.CharField(max_length=1500)
     Usu_art = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     plant_art = models.ForeignKey(Planta, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title
 
 class Valoracion(models.Model):
     Usu_valo = models.ForeignKey(Usuario, on_delete=models.CASCADE)

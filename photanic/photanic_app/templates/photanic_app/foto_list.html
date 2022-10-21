@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+        <center><h1>Fotos</h1></center>
+    <body style="background-color:#a1ff75;">
+        <center>
+        <ul>
+          {% for foto in object_list %}
+          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ foto.id }}">{{ foto.img }}</a>
+          </li>
+          {% empty %}
+          <li>No hay fotos todavía.</li>
+          {% endfor %}
+        </ul>
+        </center>
+    </body>
+{% endblock %}
