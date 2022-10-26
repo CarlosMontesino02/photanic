@@ -1,0 +1,11 @@
+{% block content %}
+<body>
+  <h1>Modifica una planta</h3>
+  <form class="form-horizontal form_middle" enctype='multipart/form-data' method="POST">{% csrf_token %}
+      {{ form.as_p }}
+
+      <input type="submit" value="Guardar">
+  </form>
+  <p>huevo</p>
+</body>
+{% endblock %}

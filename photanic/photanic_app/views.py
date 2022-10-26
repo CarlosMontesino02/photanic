@@ -20,12 +20,13 @@ class Detalles_plantas(DetailView):
 
 class plantcreateview(CreateView):
     model = Planta
-    fields = ['id','kingdom','phylum','clase','order','family','genus','category']
-    success_url = reverse_lazy('')
+    fields = ['common_name','kingdom','phylum','clase','order','family','genus','category']
+    success_url = reverse_lazy('index')
 
 class plantUpdateView(UpdateView):
     model = Planta
-    fields = ['id','kingdom','phylum','clase','order','family','genus','category']
+    fields = ['common_name','kingdom','phylum','clase','order','family','genus','category']
+    success_url = reverse_lazy('index')
 
 class plantDeleteView(DeleteView):
     model = Planta
