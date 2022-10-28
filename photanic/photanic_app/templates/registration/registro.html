@@ -1,0 +1,14 @@
+{% block content %}
+    <body>
+        <h1>Registro:</h1>
+        <form method="POST" action="{% url 'user-add' %}">
+            {% csrf_token %}
+            {{ UForm }}
+            {{ PForm }}
+            <div>
+                <button type="submit" value="Registro">Registro</button>
+            </div>
+    
+        </form>
+    </body>
+{% endblock %}

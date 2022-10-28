@@ -3,8 +3,12 @@ from photanic_app.models import *
 from django.views.generic import DetailView
 from django.views.generic.edit import FormView
 from django.views.generic import ListView
-from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.contrib.auth import login, authenticate
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from .forms import UserForm
 
 
 def index (request):
@@ -118,9 +122,13 @@ class articleDeleteView(DeleteView):
 
 #Usuarios
 class Lista_usuarios(ListView):
-    model = Usuario
+    model = User
 
 class Detalles_usuarios(DetailView):
-    model = Usuario
+    model = User
 
+#Registro
+class FormUser(CreateView):
+    model = User
+    form_class = UserForm
 # Create your views here.
