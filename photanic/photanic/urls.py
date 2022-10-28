@@ -18,16 +18,17 @@ from django.urls import path
 from photanic_app.views import *
 from django.conf.urls.static import static
 from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     
     #plantas
-    path('plants/', Lista_plantas.as_view(), name="plants"),
-    path('plants/<int:pk>/', Detalles_plantas.as_view(), name='plants_details'),
+    path('plant/', Lista_plantas.as_view(), name="plants"),
+    path('plant/<int:pk>/', Detalles_plantas.as_view(), name='plants_details'),
     path('plant/add/', plantcreateview.as_view(), name="plant-add"),
     path('plant/<int:pk>/update', plantUpdateView.as_view(), name='plant-update'),
-    path('plants/<int:pk>/delete/', plantDeleteView.as_view(), name='plant-delete'),
+    path('plant/<int:pk>/delete/', plantDeleteView.as_view(), name='plant-delete'),
    
     #Fotos
     path('foto/',Lista_fotos.as_view(), name="fotos"),
@@ -57,6 +58,10 @@ urlpatterns = [
     path('rate/<int:pk>/update/', rateUpdateView.as_view(), name='rate-update'),
     path('rate/<int:pk>/delete/', rateDeleteView.as_view(), name='rate-delete'),
 
-    path('profiles/', Lista_usuarios.as_view(), name="profiles"),
+    #registro
+    path('registro/', FormUser.as_view(), name='user-add'),
+
+    path('usuarios/', Lista_usuarios.as_view(), name="usuarios-lista"),
+    path('usuarios/<int:pk>', Detalles_usuarios.as_view(), name="usuaros-detalles"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
