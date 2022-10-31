@@ -62,6 +62,7 @@ urlpatterns = [
     path('registro/', FormUser.as_view(), name='user-add'),
 
     path('usuarios/', Lista_usuarios.as_view(), name="usuarios-lista"),
-    path('usuarios/<int:pk>', Detalles_usuarios.as_view(), name="usuaros-detalles"),
-
+    path('usuarios/<int:pk>', Detalles_usuarios.as_view(), name="usuarios-detalles"),
+    path('usuarios/<int:pk>/update', Update_User.as_view(), name="usuarios-update"),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
