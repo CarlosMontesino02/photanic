@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+        <center><h1>Usuarios</h1></center>
+    <body style="background-color:#a1ff75;">
+        <center>
+        <ul>
+          {% for user in object_list %}
+          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ user.pk }}">{{ user.username }}</a></li>
+          {% empty %}
+          <li>No hay usuarios todavía.</li>
+          {% endfor %}
+        </ul>
+        </center>
+    </body>
+{% endblock %}

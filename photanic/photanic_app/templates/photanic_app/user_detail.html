@@ -1,0 +1,28 @@
+{% block content %}
+    <center><h1>Perfil de {{ user.username }}</h1></center>
+<body style="background-color:#91ff51;">
+    <center>
+    <ul>
+      <table class="default" frame="void" rules="cols" bgcolor="white">
+          <tr>
+              <th>Nombre de usuario</th>
+              <th>Email</th>
+              <th>País</th>
+              <th>Experiencia</th>
+              <th>Fecha de nacimiento</th>
+            </tr>
+              <tr>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.country }}</td>
+                  <td>{{ user.rank }}</td>
+                  <td>{{ user.birth_date }}</td>
+                  <td><a href="{% url 'usuarios-update' user.pk %}">Modificar</a></td>
+              </tr>
+              
+      </table>
+      <p></p>
+    </ul>
+    </center>
+</body>
+{% endblock %}

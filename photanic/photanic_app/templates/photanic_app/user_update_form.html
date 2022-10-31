@@ -1,10 +1,9 @@
-
-{% block title %}Creación de usuario{% endblock %}
+{% block title %}Modificación de usuario{% endblock %}
 
 {% block content %}
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Sing Up</button>
+  <button type="submit">Editar</button>
 </form>
 {% endblock %}

@@ -1,16 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
-        <center><h1>Plantas</h1></center>
-    <body style="background-color:#a1ff75;">
-        <center>
-        <ul>
-          {% for planta in object_list %}
-          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ planta.id }}">{{ planta.common_name }}</a>
-          </li>
-          {% empty %}
-          <li>No hay plantas todavía.</li>
-          {% endfor %}
-        </ul>
-        </center>
-    </body>
+    <center><h1>Ficha técnica de {{ planta.common_name }}</h1></center>
+<body style="background-color:#91ff51;">
+    <center>
+    <ul>
+      <table class="default" frame="void" rules="cols" bgcolor="white">
+          <tr>
+              <th>Nombre común</th>
+              <th>Reino</th>
+              <th>Phylum</th>
+              <th>Clase</th>
+              <th>Order</th>
+              <th>Familia</th>
+              <th>Genus</th>
+              <th>Categoría</th>
+            </tr>
+              <tr>
+                  <td>{{ planta.common_name }}</td>
+                  <td>{{ planta.kingdom }}</td>
+                  <td>{{ planta.phylum }}</td>
+                  <td>{{ planta.clase }}</td>
+                  <td>{{ planta.order }}</td>
+                  <td>{{ planta.family }}</td>
+                  <td>{{ planta.genus }}</td>
+                  <td>{{ planta.category }}</td>
+                  <td><a href="{% url 'plant-update' planta.pk %}">Modificar</a></td>
+              </tr>
+      </table>
+      <p></p>
+    </ul>
+    </center>
+</body>
 {% endblock %}

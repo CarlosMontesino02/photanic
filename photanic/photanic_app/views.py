@@ -8,7 +8,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
-from .forms import UserForm
+from .forms import UserForm, UserEdit
 
 
 def index (request):
@@ -131,4 +131,10 @@ class Detalles_usuarios(DetailView):
 class FormUser(CreateView):
     model = User
     form_class = UserForm
+    template_name = "./photanic_app/user_form.html"
+
+class Update_User(UpdateView):
+    model = User
+    form_class = UserEdit
+    template_name = "./photanic_app/user_update_form.html"
 # Create your views here.
