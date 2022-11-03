@@ -5,12 +5,15 @@
         <center>
         <ul>
           {% for foto in object_list %}
-          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ foto.id }}">{{ foto.img }}</a>
+          <li>
+          </a><li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ foto.id }}"><img src="/media/{{ foto.img }}" width="400" height="300"></a></li>
           </li>
+          
           {% empty %}
           <li>No hay fotos todavía.</li>
           {% endfor %}
         </ul>
+        <a href="{% url 'foto-add' %}">Sube una foto</a>
         </center>
     </body>
 {% endblock %}

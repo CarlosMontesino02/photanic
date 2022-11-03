@@ -5,11 +5,12 @@
         <center>
         <ul>
           {% for articulo in object_list %}
-          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ articulo.id_art }}">{{ articulo.title }}</a>
-          </li>
+          <a href="{{ articulo.pk }}">{{ articulo.title }}</a>
           {% empty %}
           <li>No hay artículos todavía.</li>
           {% endfor %}
+          <p></p>
+          <a href="{% url 'article-add' %}">Añade una artículo</a>
         </ul>
         </center>
     </body>

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from photanic_app.views import *
 from django.conf.urls.static import static
 from django.conf import settings
@@ -60,9 +60,9 @@ urlpatterns = [
 
     #registro
     path('registro/', FormUser.as_view(), name='user-add'),
-
     path('usuarios/', Lista_usuarios.as_view(), name="usuarios-lista"),
     path('usuarios/<int:pk>', Detalles_usuarios.as_view(), name="usuarios-detalles"),
     path('usuarios/<int:pk>/update', Update_User.as_view(), name="usuarios-update"),
-    
+    path("accounts/", include("django.contrib.auth.urls"))
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

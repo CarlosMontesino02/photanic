@@ -49,7 +49,7 @@ class Planta(models.Model):
 class Foto(models.Model):
     Usu = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     plant = models.ForeignKey(Planta, on_delete=models.CASCADE)
-    img = models.ImageField()
+    img = models.ImageField(upload_to ='img/')
     place = models.CharField(max_length=23)
     descrip = models.CharField(max_length=200)
     time_stamp = models.DateTimeField()
