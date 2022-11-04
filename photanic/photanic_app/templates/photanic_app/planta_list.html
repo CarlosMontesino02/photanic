@@ -5,8 +5,9 @@
         <center>
         <ul>
           {% for planta in object_list %}
-          <a href="{{ planta.pk }}">{{ planta.common_name }}</a> 
-          <a href="{% url 'plant-update' planta.pk %}">Modificar</a>
+          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ planta.pk }}">{{ planta.common_name }}</a> 
+            <a href="{% url 'plant-update' planta.pk %}">Modificar</a>
+          </li> 
           {% empty %}
           <li>No hay plantas todavía.</li>
           {% endfor %}

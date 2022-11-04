@@ -5,7 +5,10 @@
         <center>
         <ul>
           {% for articulo in object_list %}
-          <a href="{{ articulo.pk }}">{{ articulo.title }}</a>
+          <li style=" list-style-type: none; margin: 0; padding: 0;"> <a style="margin: 10;" href="{{ articulo.pk }}">{{ articulo.title }}</a>
+          <a href="{% url 'article-update' articulo.pk %}">Modificar</a>
+          <p></p>
+          </li>
           {% empty %}
           <li>No hay artículos todavía.</li>
           {% endfor %}

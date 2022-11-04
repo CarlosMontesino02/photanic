@@ -61,7 +61,7 @@ class Comentario(models.Model):
     time = models.DateTimeField()
 
 class Articulo(models.Model):
-    title = models.CharField(max_length=23)
+    title = models.CharField(max_length=50)
     text = models.CharField(max_length=1500)
     Usu_art = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     plant_art = models.ForeignKey(Planta, on_delete=models.CASCADE)

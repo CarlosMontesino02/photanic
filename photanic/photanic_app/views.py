@@ -8,7 +8,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
-from .forms import UserForm, UserEdit
+from .forms import *
 
 
 def index (request):
@@ -46,11 +46,12 @@ class Detalles_fotos(DetailView):
 class fotocreateview(CreateView):
     model = Foto
     fields = ['Usu','plant','img','place','descrip','time_stamp']
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('fotos')
 
 class fotoUpdateView(UpdateView):
     model = Foto
     fields = ['Usu','plant','img','place','descrip','time_stamp']
+    success_url = reverse_lazy('fotos')
 
 class fotoDeleteView(DeleteView):
     model = Foto
@@ -108,12 +109,12 @@ class Detalles_articulos(DetailView):
 
 class articlecreateview(CreateView):
     model = Articulo
-    fields=['title','text','Usu_art','plant_art']
+    form_class = ArticuloForm
     success_url = reverse_lazy('articles')
 
 class articleUpdateView(UpdateView):
     model = Articulo
-    fields=['title','text','Usu_art','plant_art']
+    form_class = ArticuloForm
     success_url = reverse_lazy('articles')
 
 class articleDeleteView(DeleteView):

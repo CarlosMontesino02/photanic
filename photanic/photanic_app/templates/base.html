@@ -70,18 +70,17 @@
 </style>
 
 <div class="topnav">
-   <a href="{% url 'index' %}"><img src="media/img/photanic_logo.png" alt="LOGO PHOTANIC" class="center-logo"></a>
+   <a href="{% url 'index' %}"><img src="../../../media/img/photanic_logo.png" alt="LOGO PHOTANIC" class="center-logo"></a>
    <a href="{% url 'plants' %}">Plantas</a>
    <a href="{% url 'fotos' %}">Fotos</a>
    <a href="{% url 'usuarios-lista' %}">Usuarios</a>
    <a href="{% url 'articles' %}">Artículos</a>
    {% if user.is_authenticated %}
-   <a href="http://127.0.0.1:8000/usuarios/{{ user.pk }}">{{ user.username }}</a>
+   <a href="http://127.0.0.1:8000/usuarios/{{ user.pk }}" style="margin-left: 35%">{{ user.username }}</a>
    <a href="{% url 'logout' %}">Log Out</a>
    {% else %}
-   <p>You are not logged in</p>
-   <p><a href="{% url 'login' %}">Log In</a></p>
-   <p><a href="{% url 'user-add' %}">Registrate</a></p>
+   <a href="{% url 'login' %}" style="margin-left: 35%">Log In</a>
+   <a href="{% url 'user-add' %}">Registrate</a>
    {% endif %}
  </div> 
  <!--
