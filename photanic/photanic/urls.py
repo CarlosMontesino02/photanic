@@ -19,6 +19,8 @@ from photanic_app.views import *
 from django.conf.urls.static import static
 from django.conf import settings
 
+from photanic_app.api import router
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
@@ -63,6 +65,14 @@ urlpatterns = [
     path('usuarios/', Lista_usuarios.as_view(), name="usuarios-lista"),
     path('usuarios/<int:pk>', Detalles_usuarios.as_view(), name="usuarios-detalles"),
     path('usuarios/<int:pk>/update', Update_User.as_view(), name="usuarios-update"),
-    path("accounts/", include("django.contrib.auth.urls"))
+    path("accounts/", include("django.contrib.auth.urls")),
+
+    #Ganga
+    path('aboutus', aboutus, name='aboutus'),
+    path('contact', contact, name='contact'),
+
+    #API
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

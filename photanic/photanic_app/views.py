@@ -9,6 +9,9 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .forms import *
+from django.contrib.auth.models import User, Group
+
+
 
 
 def index (request):
@@ -34,7 +37,7 @@ class plantUpdateView(UpdateView):
 
 class plantDeleteView(DeleteView):
     model = Planta
-    success_url = reverse_lazy('plants')
+    success_url='/plant/'
 
 #Fotos
 class Lista_fotos(ListView):
@@ -55,7 +58,8 @@ class fotoUpdateView(UpdateView):
 
 class fotoDeleteView(DeleteView):
     model = Foto
-    success_url = reverse_lazy('fotos')
+    success_url='/foto/'
+
 #Comentario
 
 class Lista_comentarios(ListView):
@@ -138,4 +142,11 @@ class Update_User(UpdateView):
     model = User
     form_class = UserEdit
     template_name = "./photanic_app/user_update_form.html"
-# Create your views here.
+
+
+def aboutus (request):
+    return render(request, 'photanic_app/aboutus.html')
+
+def contact(request):
+    return render(request, 'photanic_app/contact.html')
+

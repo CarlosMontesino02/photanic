@@ -1,0 +1,14 @@
+
+<form method="post">{% csrf_token %}
+     
+ 
+ 
+ 
+    <p>Estas seguro de que quiere borrar la publicación?</p>
+    <img src="/media/{{ foto.img }}" width="400" height="300">
+     
+     
+     
+     
+        <input type="submit" value="Confirm">
+    </form>

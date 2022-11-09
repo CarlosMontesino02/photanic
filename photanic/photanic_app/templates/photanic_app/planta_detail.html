@@ -25,6 +25,7 @@
                   <td>{{ planta.genus }}</td>
                   <td>{{ planta.category }}</td>
                   <td><a href="{% url 'plant-update' planta.pk %}">Modificar</a></td>
+                  <td><a href="{% url 'plant-delete' planta.pk %}">Borrar</a></td>
               </tr>
       </table>
       <p></p>

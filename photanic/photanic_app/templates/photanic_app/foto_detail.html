@@ -19,6 +19,7 @@
                   <td>{{ foto.descrip }}</td>
                   <td>{{ foto.time_stamp }}</td>
                   <td><a href="{% url 'foto-update' foto.pk %}">Modificar</a></td>
+                  <td><a href="{% url 'foto-delete' foto.pk %}">Borrar</a></td>
               </tr>
       </table>
       <p></p>
