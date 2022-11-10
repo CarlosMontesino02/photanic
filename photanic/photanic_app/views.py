@@ -9,9 +9,6 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .forms import *
-from django.contrib.auth.models import User, Group
-
-
 
 
 def index (request):
@@ -128,6 +125,7 @@ class articleDeleteView(DeleteView):
 #Usuarios
 class Lista_usuarios(ListView):
     model = User
+    template_name = "./photanic_app/user_list.html"
 
 class Detalles_usuarios(DetailView):
     model = User

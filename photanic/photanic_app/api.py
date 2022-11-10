@@ -13,17 +13,39 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+#Planta
 class PlantSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Planta
         fields = ['common_name','kingdom','phylum','clase','order','family','genus','category']
 
-# ViewSets define the view behavior.
 class PlantViewSet(viewsets.ModelViewSet):
     queryset = Planta.objects.all()
     serializer_class = PlantSerializer
 
-# Routers provide an easy way of automatically determining the URL conf.
+#Foto
+class FotoSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Foto
+        fields = ['Usu','plant','img','place','descrip','time_stamp']
+
+class FotoViewSet(viewsets.ModelViewSet):
+    queryset = Foto.objects.all()
+    serializer_class = FotoSerializer
+
+class ArticuloSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Articulo
+        fields = ['title', 'text', 'Usu_art', 'plant_art']
+
+class ArticuloViewSet(viewsets.ModelViewSet):
+    queryset = Articulo.objects.all()
+    serializer_class = ArticuloSerializer
+
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'plantas', PlantViewSet)
+router.register(r'fotos', FotoViewSet)
+router.register(r'articulos', ArticuloViewSet)
+router.register(r'comentarios', ComentarioViewSet)
+router.register(r'valoraciones', ValoracionViewSet)
