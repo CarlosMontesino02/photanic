@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="masthead">
+  <div class="masthead-heading text-uppercase">Fotos</div>
+</header>
+ <center><h1>Lista de fotos</h1></center>
+    <body style="background-color:#1d5c00;">
+      <center><a href="{% url 'foto-add' %}">Sube una foto</a></center>
+        <center>
+          {% for foto in object_list %}
+          <li>
+          </a><li style=" list-style-type: none; margin: 0; padding: 0"> 
+            <a href="{{ foto.id }}"><img src="/media/{{ foto.img }}" width="400" height="300"></a>
+          </li>
+          {% empty %}
+          <li>No hay fotos todavía.</li>
+          {% endfor %}
+        </center>
+    </body>
+{% endblock %}

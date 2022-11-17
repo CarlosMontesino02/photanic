@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<header class="masthead">
+  <div class="masthead-heading text-uppercase">Sube una foto</div>
+</header>
+<div class="formulario">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Subir</button>
+  </form>
+</div>
+{% endblock %}

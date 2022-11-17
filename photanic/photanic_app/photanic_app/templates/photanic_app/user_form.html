@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="masthead">
+  <div class="masthead-heading text-uppercase">¡Regí  strate!</div>
+</header>
+<center><h1>Formulario de registro:</h1></center>
+<div class="formulario">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sing Up</button>
+  </form>
+</div>
+
+{% endblock %}

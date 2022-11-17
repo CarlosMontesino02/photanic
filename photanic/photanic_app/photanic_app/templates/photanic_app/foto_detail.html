@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <center><h1>Foto de {{ foto.Usu }}</h1></center>
+<body style="background-color:#1d5c00;">
+    <center>
+    <ul>
+      <table class="default" frame="void" rules="cols" bgcolor="white">
+          <tr>
+              <th>Nombre común</th>
+              <th></th>
+              <th>Lugar</th>
+              <th>Descripcion</th>
+              <th>Hora de subida</th>
+            </tr>
+              <tr>
+                  <td>{{ foto.plant }}</td>
+                  <td><img src="/media/{{ foto.img }}" width="400" height="300"></td>
+                  <td>{{ foto.place }}</td>
+                  <td>{{ foto.descrip }}</td>
+                  <td>{{ foto.time_stamp }}</td>
+                  <td><a href="{% url 'foto-update' foto.pk %}">Modificar</a></td>
+                  <td><a href="{% url 'foto-delete' foto.pk %}">Borrar</a></td>
+              </tr>
+      </table>
+      <p></p>
+    </ul>
+    </center>
+</body>
+{% endblock %}
