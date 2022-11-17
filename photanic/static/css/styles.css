@@ -82,11 +82,11 @@ body {
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
+  color: #ffffff;
   text-align: var(--bs-body-text-align);
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 hr {
@@ -238,12 +238,11 @@ sup {
 a {
   color: #ffffff;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 33px;
-  background-color: #000;
+  font-size: 20px;
   font-weight: bold;
 }
 a:hover {
-  color: #00630d;
+  color: #c8ff00;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -3034,13 +3033,13 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #fff;
-  background-color: #ffc800;
-  border-color: #ffc800;
+  background-color: #1d5c00;
+  border-color: #ffffff;
 }
 .btn-primary:hover {
-  color: #fff;
-  background-color: #d9aa00;
-  border-color: #cca000;
+  color: #1d5c00;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #fff;
@@ -6486,7 +6485,7 @@ textarea.form-control-lg {
 }
 
 .link-dark {
-  color: #212529;
+  color: #ffffff;
 }
 .link-dark:hover, .link-dark:focus {
   color: #1a1e21;
@@ -7775,7 +7774,7 @@ textarea.form-control-lg {
 
 .text-muted {
   --bs-text-opacity: 1;
-  color: #6c757d !important;
+  color: #ffffff !important;
 }
 
 .text-black-50 {
@@ -11305,6 +11304,7 @@ p {
 
 .page-section {
   padding: 6rem 0;
+  background-color: #1d5c00;
 }
 .page-section h2.section-heading, .page-section .section-heading.h2 {
   font-size: 2.5rem;
@@ -11386,8 +11386,10 @@ p {
     transition: font-size 0.3s ease-in-out;
   }
   #mainNav .navbar-brand img {
-    height: 2rem;
+    height: 4rem;
     transition: height 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
   }
   #mainNav.navbar-shrink {
     padding-top: 1rem;
@@ -11428,7 +11430,7 @@ header.masthead .masthead-subheading {
 }
 header.masthead .masthead-heading {
   font-size: 3.25rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 3.25rem;
   margin-bottom: 2rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -11446,7 +11448,7 @@ header.masthead .masthead-heading {
     margin-bottom: 2rem;
   }
   header.masthead .masthead-heading {
-    font-size: 4.5rem;
+    font-size: 3.4rem;
     font-weight: 700;
     line-height: 4.5rem;
     margin-bottom: 4rem;
@@ -11592,8 +11594,8 @@ header.masthead .masthead-heading {
   text-align: center;
   color: white;
   border: 7px solid #e9ecef;
-  border-radius: 100%;
-  background-color: #ffc800;
+  border-radius: 100%;  
+  background-color: #1d5c00;
 }
 .timeline > li .timeline-image h4, .timeline > li .timeline-image .h4 {
   font-size: 10px;
@@ -11779,4 +11781,10 @@ section#contact form#contactForm :-ms-input-placeholder {
   text-align: center;
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.formulario {
+  background-color: #ffffff;
+  color: #1d5c00;
+  font-family: "Montserrat";
 }
