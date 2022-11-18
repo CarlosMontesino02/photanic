@@ -11,7 +11,11 @@
       <p>País: {{ user.country }}</p>
       <p>Rango : {{ user.rank }}</p>
       <p>Fecha de nacimiento : {{ user.birth_date }} </p>
+      {% if request.user.is_authenticated %}
       <p>Información incorrecta? <a href="{% url 'usuarios-update' user.pk %}">Modificar</a></p>
+      {% else %}
+      <p></p>
+      {% endif %}
       <p></p>
     </ul>
     </center>
