@@ -42,6 +42,7 @@ class Lista_fotos(ListView):
 
 class Detalles_fotos(DetailView):
     model = Foto
+    template_name = "./photanic_app/foto_detail.html"
 
 class fotocreateview(CreateView):
     model = Foto
@@ -51,6 +52,7 @@ class fotocreateview(CreateView):
 class fotoUpdateView(UpdateView):
     model = Foto
     fields = ['Usu','plant','img','place','descrip','time_stamp']
+    template_name = "./photanic_app/foto_form.html"
     success_url = reverse_lazy('fotos')
 
 class fotoDeleteView(DeleteView):

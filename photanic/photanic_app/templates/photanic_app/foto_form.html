@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<body>
-  <h1>Edita la foto</h3>
-  <form class="form-horizontal form_middle" enctype='multipart/form-data' method="POST">{% csrf_token %}
-      {{ form.as_p }}
-
-      <input type="submit" value="Guardar">
+<header class="masthead">
+  <div class="masthead-heading text-uppercase">Sube una foto</div>
+</header>
+<div class="formulario">
+  <p></p>
+  <form enctype="multipart/form-data" method="post"><!--enctype="multipart/form-data"  para poder subir la imagen-->
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Subir</button>
   </form>
-</body>
+</div>
 {% endblock %}

@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<body>
-  <h1>Añade un artículo</h3>
-  <form class="form-horizontal form_middle" enctype='multipart/form-data' method="POST">{% csrf_token %}
-      {{ form.as_p }}
-
-      <input type="submit" value="Guardar">
+<header class="masthead">
+  <div class="masthead-heading text-uppercase">Escribe un artículo</div>
+</header>
+<div class="formulario">
+  <p></p>
+  <center>  
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Subir</button>
   </form>
-</body>
+</center>
+
+</div>
 {% endblock %}

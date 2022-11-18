@@ -1,35 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-    <center><h1>Ficha técnica de {{ planta.common_name }}</h1></center>
-<body style="background-color:#91ff51;">
+<body style="background-color:#1d5c00;">
     <center>
-    <ul>
-      <table class="default" frame="void" rules="cols" bgcolor="white">
-          <tr>
-              <th>Nombre común</th>
-              <th>Reino</th>
-              <th>Phylum</th>
-              <th>Clase</th>
-              <th>Order</th>
-              <th>Familia</th>
-              <th>Genus</th>
-              <th>Categoría</th>
-            </tr>
-              <tr>
-                  <td>{{ planta.common_name }}</td>
-                  <td>{{ planta.kingdom }}</td>
-                  <td>{{ planta.phylum }}</td>
-                  <td>{{ planta.clase }}</td>
-                  <td>{{ planta.order }}</td>
-                  <td>{{ planta.family }}</td>
-                  <td>{{ planta.genus }}</td>
-                  <td>{{ planta.category }}</td>
-                  <td><a href="{% url 'plant-update' planta.pk %}">Modificar</a></td>
-                  <td><a href="{% url 'plant-delete' planta.pk %}">Borrar</a></td>
-              </tr>
-      </table>
-      <p></p>
-    </ul>
+      <header class="masthead">
+        <div class="masthead-heading text-uppercase">Ficha técnica de {{ planta.common_name }}</div>
+      </header>
+<body style="background-color:#1d5c00;">
+    <center>
+  <p>Nombre común: {{ planta.common_name }}</p>
+  <p>Reino : {{ planta.kingdom }}</p>
+  <p>Phylum : {{ planta.phylum }}</p>
+  <p>Clase : {{ planta.clase }}</p>
+  <p>Order : {{ planta.order }}</p>
+  <p>Familia : {{ planta.family }}</p>
+  <p>Genus : {{ planta.genus }}</p>
+  <p>Categoría : {{ planta.category }}</p>
+ 
+<a href="{% url 'plant-update' planta.pk %}">Modificar</a></td>
+<p></p>
+<a href="{% url 'plant-delete' planta.pk %}">Borrar</a></td>
+
     </center>
 </body>
 {% endblock %}

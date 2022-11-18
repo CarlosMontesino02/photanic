@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-        <center><h1>Plantas</h1></center>
-    <body style="background-color:#a1ff75;">
+<header class="masthead">
+  <div class="masthead-heading text-uppercase">Plantas</div>
+</header>
+<center><h1>Listado de plantas</h1></center>
+    <body style="background-color:#1d5c00;">
         <center>
         <ul>
           {% for planta in object_list %}

@@ -1,10 +1,16 @@
-
-{% block title %}Creación de usuario{% endblock %}
-
+{% extends 'base.html' %}
 {% block content %}
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sing Up</button>
-</form>
+<header class="masthead">
+  <div class="masthead-heading text-uppercase">¡Regístrate!</div>
+</header>
+<center><h1>Formulario de registro:</h1></center>
+<div class="formulario">
+  <p></p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sing Up</button>
+  </form>
+</div>
+
 {% endblock %}

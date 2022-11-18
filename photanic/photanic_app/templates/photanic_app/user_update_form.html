@@ -1,6 +1,12 @@
-{% block title %}Modificación de usuario{% endblock %}
-
+{% extends 'base.html' %}
 {% block content %}
+<body style="background-color:#1d5c00;">
+    <center>
+      <header class="masthead">
+        <div class="masthead-heading text-uppercase">Perfil de {{ user.username }}</div>
+      </header>
+    <ul>
+      <h1>Modifica tu usuario</h1>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}

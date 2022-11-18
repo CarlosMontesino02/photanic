@@ -1,27 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-    <center><h1>Perfil de {{ user.username }}</h1></center>
-<body style="background-color:#91ff51;">
+<body style="background-color:#1d5c00;">
     <center>
+      <header class="masthead">
+        <div class="masthead-heading text-uppercase">Perfil de {{ user.username }}</div>
+      </header>
     <ul>
-      <table class="default" frame="void" rules="cols" bgcolor="white">
-          <tr>
-              <th>Nombre de usuario</th>
-              <th>Email</th>
-              <th>País</th>
-              <th>Experiencia</th>
-              <th>Fecha de nacimiento</th>
-            </tr>
-              <tr>
-                  <td>{{ user.username }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.country }}</td>
-                  <td>{{ user.rank }}</td>
-                  <td>{{ user.birth_date }}</td>
-                  <td><a href="{% url 'usuarios-update' user.pk %}">Modificar</a></td>
-              </tr>
-              
-      </table>
+      <p>Nombre de usuario: {{ user.username }}</p>
+      <p>Email: {{ user.email }}</p>
+      <p>País: {{ user.country }}</p>
+      <p>Rango : {{ user.rank }}</p>
+      <p>Fecha de nacimiento : {{ user.birth_date }} </p>
+      <p>Información incorrecta? <a href="{% url 'usuarios-update' user.pk %}">Modificar</a></p>
       <p></p>
     </ul>
     </center>
