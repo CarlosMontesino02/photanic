@@ -29,6 +29,7 @@ urlpatterns = [
     #Stuff
     path('aboutus', aboutus, name='aboutus'),
     path('contact', contact, name='contact'),
+    path('terms', terms, name='terms'),
 
     #API
     path('api/', include(router.urls)),
