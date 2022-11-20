@@ -10,8 +10,7 @@ body{
     font-family: 'Playfair Display', serif;
     display: grid;
     background-color: #ffffff;
-background-image: linear-gradient(43deg, #1e8100 0%, #6ef346 46%, #ffffff 100%);
-
+    background-image: linear-gradient(43deg, #1d5c00 0%, #1d5c00 46%, #1d5c00 100%);
     align-content: center;
     min-height: 100vh;
 }
@@ -29,8 +28,8 @@ section{
     display: flex;
     border-radius: 12px 0 0 12px;
 }
-.image img{
-height:20vh;
+.image img {
+height: 17vh;
 margin:180px auto
 }
 .content{
@@ -118,7 +117,7 @@ margin:180px auto
         border-radius: none;
     }
     .image{
-        height: 100vh;
+        height: 80vh;
         border-radius: none;
     }
     .content{
