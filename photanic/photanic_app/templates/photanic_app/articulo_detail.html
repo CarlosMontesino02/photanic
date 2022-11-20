@@ -1,27 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-    <center><h1>{{ articulo.title }}</h1></center>
 <body style="background-color:#1d5c00;">
     <center>
-    <p>{{ articulo.text }}</p>
+    <header class="masthead">
+        <div class="masthead-heading text-uppercase">"{{ articulo.title }}" por {{ articulo.Usu_art}}</div>
+    </header>
+    <section class="page-section" id="services">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">{{ articulo.title }}</h2>
+                <h3 class="section-subheading text-muted">{{ articulo.text }} </h3>
+            </div>
+    </section>
     <p></p>
     <p>creado por {{ articulo.Usu_art }} sobre {{ articulo.plant_art }}</p>
-<!-- 
-    <ul>
-      <table class="default" frame="void" rules="cols" bgcolor="white">
-          <tr>
-              <th>texto</th>
-              <th>creado por</th>
-              <th>Planta</th>
-            </tr>
-              <tr>
-                  <td>{{ articulo.text }}</td>
-                  <td>{{ articulo.Usu_art }}</td>
-                  <td>{{ articulo.planta }}</td>
-              </tr>
-      </table>
-      <p></p>
-    </ul>-->
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'article-update' articulo.pk %}">Modificar</a>
+    <a href="{% url 'article-delete' articulo.pk %}">Borrar</a>
+    {% else %}
+    <p></p>
+    {% endif %}
     </center>
 </body>
 {% endblock %}

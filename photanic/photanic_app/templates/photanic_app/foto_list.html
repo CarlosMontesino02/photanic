@@ -11,10 +11,14 @@
           </a><li style=" list-style-type: none; margin: 0; padding: 0"> 
             <a href="{{ foto.id }}"><img src="/media/{{ foto.img }}" width="400" height="300"></a>
           </li><p></p>
-          <center><a href="{% url 'foto-add' %}">Sube una foto</a></center>
           {% empty %}
           <li>No hay fotos todavía.</li>
           {% endfor %}
+          {% if user.is_authenticated %}
+          <center><a href="{% url 'foto-add' %}">Sube una foto</a></center>
+          {% else %}
+          <p>Tienes que <a href="{% url 'user-add' %}" style="font-size: 17px;">registrarte</a> para subir una foto</p>
+          {% endif %}
         </center>
     </body>
 {% endblock %}

@@ -3,9 +3,8 @@
 <body style="background-color:#1d5c00;">
     <center>
       <header class="masthead">
-        <div class="masthead-heading text-uppercase">Foto de una {{ foto.plant }} tomada por {{ foto.Usu }}</div>
+        <div class="masthead-heading text-uppercase">Foto de una "{{ foto.plant }}" tomada por {{ foto.Usu }}</div>
       </header>
-<body style="background-color:#1d5c00;">
     <ul>
     <p>Nombre común : {{ foto.plant }}</p>
     <p></p>
@@ -15,8 +14,12 @@
     <p><img src="/media/{{ foto.img }}" width="400" height="300"></p>
     <p>Descripcion : {{ foto.descrip }}</p>
       <p></p>
+      {% if user.is_authenticated %}
       <a href="{% url 'foto-update' foto.pk %}">Modificar</a>
       <a href="{% url 'foto-delete' foto.pk %}">Borrar</a>
+      {% else %}
+      <p></p>
+      {% endif %}
     </ul>
     </center>
 </body>

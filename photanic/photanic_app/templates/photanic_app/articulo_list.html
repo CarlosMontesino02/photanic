@@ -8,16 +8,19 @@
         <center>
         <ul>
           {% for articulo in object_list %}
-          <li style=" list-style-type: none; margin: 0; padding: 0;"> <a style="margin: 10;" href="{{ articulo.pk }}">{{ articulo.title }}</a>
-          <a href="{% url 'article-update' articulo.pk %}">Modificar</a>
-          <a href="{% url 'article-delete' articulo.pk %}">Borrar</a>
-          <p></p>
+          <li style=" list-style-type: none; margin: 0; padding: 0;"> 
+            <a style="margin: 10;" href="{{ articulo.pk }}">{{ articulo.title }}</a>
           </li>
+          <p></p>
           {% empty %}
           <li>No hay artículos todavía.</li>
           {% endfor %}
           <p></p>
-          <a href="{% url 'article-add' %}">Añade una artículo</a>
+          {% if user.is_authenticated %}
+          <center><a href="{% url 'article-add' %}">Sube un artículo</a></center>
+          {% else %}
+          <p>Tienes que <a href="{% url 'user-add' %}" style="font-size: 17px;">registrarte</a> para subir un artículo</p>
+          {% endif %}
         </ul>
         </center>
     </body>
