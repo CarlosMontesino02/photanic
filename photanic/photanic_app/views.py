@@ -150,3 +150,6 @@ def aboutus (request):
 def contact(request):
     return render(request, 'photanic_app/contact.html')
 
+def terms(request):
+    return render(request, 'photanic_app/terms.html')
+
