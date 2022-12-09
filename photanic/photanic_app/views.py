@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 def index (request):
@@ -28,14 +29,24 @@ class plantcreateview(LoginRequiredMixin, CreateView):
     fields = ['common_name','kingdom','phylum','clase','order','family','genus','category']
     success_url = reverse_lazy('index')
 
-class plantUpdateView(LoginRequiredMixin, UpdateView):
+class plantUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Planta
     fields = ['common_name','kingdom','phylum','clase','order','family','genus','category']
     success_url = reverse_lazy('index')
+    def test_func(self):
+        try:
+            return Planta.objects.get(pk=self.request.user.pk)==Planta.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 
-class plantDeleteView(LoginRequiredMixin, DeleteView):
+class plantDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Planta
     success_url='/plant/'
+    def test_func(self):
+        try:
+            return Planta.objects.get(pk=self.request.user.pk)==Planta.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 
 #Fotos
 class Lista_fotos(ListView):
@@ -50,16 +61,25 @@ class fotocreateview(LoginRequiredMixin, CreateView):
     fields = ['Usu','plant','img','place','descrip','time_stamp']
     success_url = reverse_lazy('fotos')
 
-class fotoUpdateView(LoginRequiredMixin, UpdateView):
+class fotoUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Foto
     fields = ['Usu','plant','img','place','descrip','time_stamp']
     template_name = "./photanic_app/foto_form.html"
     success_url = reverse_lazy('fotos')
+    def test_func(self):
+        try:
+            return Foto.objects.get(pk=self.request.user.pk)==Foto.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 
-class fotoDeleteView(LoginRequiredMixin, DeleteView):
+class fotoDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Foto
     success_url='/foto/'
-
+    def test_func(self):
+        try:
+            return Foto.objects.get(pk=self.request.user.pk)==Foto.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 #Comentario
 
 class Lista_comentarios(ListView):
@@ -73,15 +93,24 @@ class comentcreateview(LoginRequiredMixin, CreateView):
     fields=['Usu','photo','text','time']
     success_url = reverse_lazy('photos')
 
-class comentUpdateView(LoginRequiredMixin, UpdateView):
+class comentUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Comentario
     fields=['Usu','photo','text','time']
     success_url = reverse_lazy('coments')
+    def test_func(self):
+        try:
+            return Comentario.objects.get(pk=self.request.user.pk)==Comentario.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 
-class comentDeleteView(LoginRequiredMixin, DeleteView):
+class comentDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Comentario
     success_url = reverse_lazy('coments')
-
+    def test_func(self):
+        try:
+            return Comentario.objects.get(pk=self.request.user.pk)==Comentario.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 #Valoraciones
 
 class Lista_valoraciones(ListView):
@@ -94,15 +123,26 @@ class ratecreateview(LoginRequiredMixin, CreateView):
     model = Valoracion
     fields=['Usu_valo','art_valo','rate']
     success_url = reverse_lazy('rates')
+    success_url = reverse_lazy('articles')
 
-class rateUpdateView(LoginRequiredMixin, UpdateView):
+class rateUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Valoracion
     fields=['Usu_valo','art_valo','rate']
     success_url = reverse_lazy('rates')
+    def test_func(self):
+        try:
+            return Valoracion.objects.get(pk=self.request.user.pk)==Valoracion.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 
-class rateDeleteView(LoginRequiredMixin, DeleteView):
+class rateDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Valoracion
     success_url = reverse_lazy('rates')
+    def test_func(self):
+        try:
+            return Valoracion.objects.get(pk=self.request.user.pk)==Valoracion.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 
 #Articulos
 class Lista_Articulos(ListView):
@@ -115,15 +155,26 @@ class articlecreateview(LoginRequiredMixin, CreateView):
     model = Articulo
     form_class = ArticuloForm
     success_url = reverse_lazy('articles')
+    success_url = reverse_lazy('articles')
 
-class articleUpdateView(LoginRequiredMixin, UpdateView):
+class articleUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Articulo
     form_class = ArticuloForm
     success_url = reverse_lazy('articles')
+    def test_func(self):
+        try:
+            return Articulo.objects.get(pk=self.request.user.pk)==Articulo.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 
-class articleDeleteView(LoginRequiredMixin, DeleteView):
+class articleDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Articulo
     success_url = reverse_lazy('articles')
+    def test_func(self):
+        try:
+            return Articulo.objects.get(pk=self.request.user.pk)==Articulo.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 
 #Usuarios
 class Lista_usuarios(LoginRequiredMixin, ListView):
@@ -139,10 +190,15 @@ class FormUser(CreateView):
     form_class = UserForm
     template_name = "./photanic_app/user_form.html"
 
-class Update_User(LoginRequiredMixin, UpdateView):
+class Update_User(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserEdit
     template_name = "./photanic_app/user_update_form.html"
+    def test_func(self):
+        try:
+            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
 
 
 def aboutus (request):
@@ -153,4 +209,3 @@ def contact(request):
 
 def terms(request):
     return render(request, 'photanic_app/terms.html')
-
