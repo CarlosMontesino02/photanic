@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .forms import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def index (request):
@@ -22,17 +23,17 @@ class Lista_plantas(ListView):
 class Detalles_plantas(DetailView):
     model = Planta
 
-class plantcreateview(CreateView):
+class plantcreateview(LoginRequiredMixin, CreateView):
     model = Planta
     fields = ['common_name','kingdom','phylum','clase','order','family','genus','category']
     success_url = reverse_lazy('index')
 
-class plantUpdateView(UpdateView):
+class plantUpdateView(LoginRequiredMixin, UpdateView):
     model = Planta
     fields = ['common_name','kingdom','phylum','clase','order','family','genus','category']
     success_url = reverse_lazy('index')
 
-class plantDeleteView(DeleteView):
+class plantDeleteView(LoginRequiredMixin, DeleteView):
     model = Planta
     success_url='/plant/'
 
@@ -44,18 +45,18 @@ class Detalles_fotos(DetailView):
     model = Foto
     template_name = "./photanic_app/foto_detail.html"
 
-class fotocreateview(CreateView):
+class fotocreateview(LoginRequiredMixin, CreateView):
     model = Foto
     fields = ['Usu','plant','img','place','descrip','time_stamp']
     success_url = reverse_lazy('fotos')
 
-class fotoUpdateView(UpdateView):
+class fotoUpdateView(LoginRequiredMixin, UpdateView):
     model = Foto
     fields = ['Usu','plant','img','place','descrip','time_stamp']
     template_name = "./photanic_app/foto_form.html"
     success_url = reverse_lazy('fotos')
 
-class fotoDeleteView(DeleteView):
+class fotoDeleteView(LoginRequiredMixin, DeleteView):
     model = Foto
     success_url='/foto/'
 
@@ -67,17 +68,17 @@ class Lista_comentarios(ListView):
 class Detalles_comentarios(DetailView):
     model = Comentario
 
-class comentcreateview(CreateView):
+class comentcreateview(LoginRequiredMixin, CreateView):
     model = Comentario
     fields=['Usu','photo','text','time']
     success_url = reverse_lazy('photos')
 
-class comentUpdateView(UpdateView):
+class comentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comentario
     fields=['Usu','photo','text','time']
     success_url = reverse_lazy('coments')
 
-class comentDeleteView(DeleteView):
+class comentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comentario
     success_url = reverse_lazy('coments')
 
@@ -89,17 +90,17 @@ class Lista_valoraciones(ListView):
 class Detalles_valoraciones(DetailView):
     model = Valoracion
 
-class ratecreateview(CreateView):
+class ratecreateview(LoginRequiredMixin, CreateView):
     model = Valoracion
     fields=['Usu_valo','art_valo','rate']
     success_url = reverse_lazy('rates')
 
-class rateUpdateView(UpdateView):
+class rateUpdateView(LoginRequiredMixin, UpdateView):
     model = Valoracion
     fields=['Usu_valo','art_valo','rate']
     success_url = reverse_lazy('rates')
 
-class rateDeleteView(DeleteView):
+class rateDeleteView(LoginRequiredMixin, DeleteView):
     model = Valoracion
     success_url = reverse_lazy('rates')
 
@@ -110,26 +111,26 @@ class Lista_Articulos(ListView):
 class Detalles_articulos(DetailView):
     model = Articulo
 
-class articlecreateview(CreateView):
+class articlecreateview(LoginRequiredMixin, CreateView):
     model = Articulo
     form_class = ArticuloForm
     success_url = reverse_lazy('articles')
 
-class articleUpdateView(UpdateView):
+class articleUpdateView(LoginRequiredMixin, UpdateView):
     model = Articulo
     form_class = ArticuloForm
     success_url = reverse_lazy('articles')
 
-class articleDeleteView(DeleteView):
+class articleDeleteView(LoginRequiredMixin, DeleteView):
     model = Articulo
     success_url = reverse_lazy('articles')
 
 #Usuarios
-class Lista_usuarios(ListView):
+class Lista_usuarios(LoginRequiredMixin, ListView):
     model = User
     template_name = "./photanic_app/user_list.html"
 
-class Detalles_usuarios(DetailView):
+class Detalles_usuarios(LoginRequiredMixin, DetailView):
     model = User
 
 #Registro
@@ -138,7 +139,7 @@ class FormUser(CreateView):
     form_class = UserForm
     template_name = "./photanic_app/user_form.html"
 
-class Update_User(UpdateView):
+class Update_User(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserEdit
     template_name = "./photanic_app/user_update_form.html"
