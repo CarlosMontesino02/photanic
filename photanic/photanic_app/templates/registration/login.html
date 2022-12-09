@@ -1,201 +1,59 @@
-<style type="text/css">
-  
-  /* BASIC */
-  
-  html {
-    background-color: #ffffff;
-  }
-  
-  body {
-    font-family: "Poppins", sans-serif;
-    height: 100vh;
-  }
-  
-  a {
-    color: #0faf00;
-    display:inline-block;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display:inline-block;
-    margin: 40px 8px 10px 8px;
-    color: #cccccc;
-  }
-  
-  
-  
-  /* STRUCTURE */
-  
-  .wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    min-height: 100%;
-    padding: 20px;
-  }
-  
-  /* TABS */
-  
-  h2.inactive {
-    color: #ffffff;
-  }
-  
-  h2.active {
-    color: #e60000;
-    border-bottom: 2px solid #0d9c00;
-  }
-  
-  input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: #ffffff;
-  }
-  
-  input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
-    -moz-transform: scale(0.95);
-    -webkit-transform: scale(0.95);
-    -o-transform: scale(0.95);
-    -ms-transform: scale(0.95);
-    transform: scale(0.95);
-  }
-  
-  input[type=text] {
-    background-color: #ffffff;
-    border: none;
-    color: #0d0d0d;
-    padding: 15px 32px;
-    text-align: left;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    width: 30%;
-    border: 2px solid #000000;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-  }
-  
-  input[type=text]:focus {
-    background-color: #fff;
-    border-bottom: 2px solid #ffffff;
-  }
-  
-  input[type=text]:placeholder {
-    color: #ffffff;
-  }
-  
-  input[type=text], input[type=password] {
-    background-color: #ffffff;
-    border: none;
-    color: #0d0d0d;
-    padding: 15px 32px;
-    text-align: left;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    width: 30%;
-    border: 2px solid #000000;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-}
-  /* ANIMATIONS */
-  
-  /* Simple CSS3 Fade-in-down Animation */
-  .fadeInDown {
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-  }
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login form with JavaScript Validation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="/static/css/style_login.css">
 
-  .underlineHover:after {
-    display: block;
-    left: 0;
-    bottom: -10px;
-    width: 0;
-    height: 2px;
-    background-color: #ffffff;
-    content: "";
-    transition: width 0.2s;
-  }
-  
-  .underlineHover:hover {
-    color: #0d0d0d;
-  }
-  
-  .underlineHover:hover:after{
-    width: 100%;
-  }
-  
-  
-  
-  /* OTHERS */
-  
-  *:focus {
-      outline: none;
-  }
-  
-  #icon {
-    width:60%;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  </style>
- <img src="../../../media/img/photanic_logo.png" alt="LOGO PHOTANIC" class="center-logo">
-  {% block content %}
-  
-  {% if form.errors %}
-  <p style="margin-top: 40px;">Tu nombre no coincide con ninguno de la base datos. Introduce otro.</p>
-  {% endif %}
-  
-  {% if next %}
-      {% if user.is_authenticated %}
-      <p style="margin-top: 60px;">No tienes acceso a la página. Inserta un nombre que pueda acceder.</p>
-      {% else %}
-      <p>Por favor, inserta tu nombre de usuario.</p>
-      {% endif %}
-  {% endif %}
-  
-  <form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  
-  <div style="margin-top: 40px;">
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
+</head>
+<body>
+<!-- html -->
+<div class="logo text-center">
+  <a class="navbar-brand" href="{% url 'index' %}"><img src="/static/assets/img/icono.png" alt="..." /></a>
+</div>
+{% block content %}
+{% if form.errors %}
+<p style="margin-top: 40px; text-align: center; color: crimson;">El usuario o la contraseña son incorrectos.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p style="margin-top: 60px;">No tienes acceso a la página. Inserta un nombre que pueda acceder.</p>
+    {% else %}
+    <p>Por favor, inserta tu nombre de usuario.</p>
+    {% endif %}
+{% endif %}
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<div class="wrapper">
+  <div class="inner-warpper text-center">
+    <h2 class="title">Login</h2>
+      <div class="input-group">
+        <td>{{ form.username }}</td>
+      </div>
+      <div class="input-group">
+        <td>{{ form.password }}</td>
+      </div>
+
+      <button type="submit" id="login">Login</button>
+      <div class="clearfix supporter">
+        <div class="pull-left remember-me">
+          <input id="rememberMe" type="checkbox">
+          <label for="rememberMe">Remember Me</label>
+        </div>
+        <a class="forgot pull-right" href="{% url 'password_reset' %}">Forgot Password?</a>
+      </div>
+    </form>
   </div>
-  <div class="contraseña">
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
+  <div class="signup-wrapper text-center">
+    <a href="{% url 'user-add' %}">Don't have an accout? <span class="text-primary">Create One</span></a>
   </div>
-  
-  <div>
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
-  </div>
-  </form>
-  
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">¿Has olvidado tu contraseña?</a></p>
-  
-  {% endblock %}
+</div>
+{% endblock %}
+<!-- partial -->
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script><script  src="/static/js/script_login.js"></script>
+
+</body>
+</html>
