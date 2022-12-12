@@ -163,7 +163,7 @@ class articleUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('articles')
     def test_func(self):
         try:
-            return Articulo.objects.get(pk=self.request.user.pk)==Articulo.objects.get(pk=self.kwargs.get("pk"))
+            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(Usu_art=self.kwargs.get("Usu_art"))
         except:
             return False
 
@@ -172,7 +172,7 @@ class articleDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('articles')
     def test_func(self):
         try:
-            return Articulo.objects.get(pk=self.request.user.pk)==Articulo.objects.get(pk=self.kwargs.get("pk"))
+            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(Usu_art=self.kwargs.get("Usu_art"))
         except:
             return False
 
