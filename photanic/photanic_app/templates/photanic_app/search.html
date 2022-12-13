@@ -22,7 +22,7 @@
                 <li style="list-style: none">Genus : {{ planta.genus }}</li>
                 <li style="list-style: none">Categoría : {{ planta.category }}</li>
                 </ul></p>
-                <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
+                <a class="btn btn-primary" href="{% url 'index' %}" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Volver atrás</a>
 
             </div>
             {% endfor %}</center>
