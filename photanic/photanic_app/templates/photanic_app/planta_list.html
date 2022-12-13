@@ -9,21 +9,14 @@
         <ul>
           {% for planta in object_list %}
           <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ planta.pk }}">{{ planta.common_name }}</a> 
-            {% if user.is_staff %}
             <a href="{% url 'plant-update' planta.pk %}">Modificar</a>
-            {% else %}
-            <p></p>
-            {% endif %}
+            
           </li> 
           {% empty %}
           <li>No hay plantas todavía.</li>
           {% endfor %}
           <p></p>
-          {% if user.is_staff %}
-          <center><a href="{% url 'foto-add' %}">Sube una planta</a></center>
-          {% else %}
-          <p></p>
-          {% endif %}
+          <a href="{% url 'plant-add' %}">Añade una planta</a>
         </ul>
         </center>
     </body>
