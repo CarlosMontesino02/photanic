@@ -14,16 +14,15 @@
             <div class="row justify-content-center">
             <!-- Portfolio Items-->
             {% for planta in object_list %}
-  
-                                            <ul>
-                                                <li style="list-style: none">Nombre común: {{ planta.common_name }}</li>
-                                                <li style="list-style: none">Phylum : {{ planta.phylum }}</li>
-                                                <li style="list-style: none"><b>Clase : {{ planta.clase }}</li>
-                                                <li style="list-style: none"><b>Familia : {{ planta.family }}</li>
-                                                <li style="list-style: none"><b>Genus : {{ planta.genus }}</li>
-                                                <li style="list-style: none"><b>Categoría : {{ planta.category }}</li>
-                                            </ul></p>
-                                        <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
+                <ul>
+                <li style="list-style: none">Nombre común: {{ planta.common_name }}</li>
+                <li style="list-style: none">Phylum : {{ planta.phylum }}</li>
+                <li style="list-style: none">Clase : {{ planta.clase }}</li>
+                <li style="list-style: none">Familia : {{ planta.family }}</li>
+                <li style="list-style: none">Genus : {{ planta.genus }}</li>
+                <li style="list-style: none">Categoría : {{ planta.category }}</li>
+                </ul></p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
 
             </div>
             {% endfor %}</center>
