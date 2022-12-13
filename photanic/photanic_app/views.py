@@ -11,12 +11,20 @@ from django.urls import reverse_lazy
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
-
+from django.db.models import Q
 
 def index (request):
     return render(request, 'photanic_app/index.html')
 
 #Plantas
+
+class search(ListView):
+    model = Planta
+    template_name="photanic_app/search.html"
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list=Planta.objects.filter(Q(common_name__in=[query]))
+        return object_list
 
 class Lista_plantas(ListView):
     model = Planta
