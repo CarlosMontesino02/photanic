@@ -66,12 +66,12 @@ class Detalles_fotos(DetailView):
 
 class fotocreateview(LoginRequiredMixin, CreateView):
     model = Foto
-    fields = ['Usu','plant','img','place','descrip','time_stamp']
+    fields = ['Usu','plant','img','place','descrip']
     success_url = reverse_lazy('fotos')
 
 class fotoUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Foto
-    fields = ['Usu','plant','img','place','descrip','time_stamp']
+    fields = ['Usu','plant','img','place','descrip']
     template_name = "./photanic_app/foto_form.html"
     success_url = reverse_lazy('fotos')
     def test_func(self):

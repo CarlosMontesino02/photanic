@@ -51,7 +51,7 @@ class Foto(models.Model):
     img = models.ImageField(upload_to ='img/')
     place = models.CharField(max_length=23)
     descrip = models.CharField(max_length=200)
-    time_stamp = models.DateTimeField()
+    time_stamp = models.DateTimeField(auto_now=True)
 
 class Comentario(models.Model):
     Usu = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
