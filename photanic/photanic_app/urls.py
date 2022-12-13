@@ -15,6 +15,7 @@ urlpatterns = [
     path('plant/add/', plantcreateview.as_view(), name="plant-add"),
     path('plant/<int:pk>/update', plantUpdateView.as_view(), name='plant-update'),
     path('plant/<int:pk>/delete/', plantDeleteView.as_view(), name='plant-delete'),
+    path('plant/search', search.as_view(), name="search"),
    
     #Fotos
     path('foto/',Lista_fotos.as_view(), name="fotos"),
