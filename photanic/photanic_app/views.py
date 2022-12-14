@@ -12,6 +12,7 @@ from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 
 def index (request):
     return render(request, 'photanic_app/index.html')
@@ -66,12 +67,17 @@ class Detalles_fotos(DetailView):
 
 class fotocreateview(LoginRequiredMixin, CreateView):
     model = Foto
-    fields = ['Usu','plant','img','place','descrip']
+    fields = ['plant','img','place','descrip']
     success_url = reverse_lazy('fotos')
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy('index'))
 
 class fotoUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Foto
-    fields = ['Usu','plant','img','place','descrip']
+    fields = ['plant','img','place','descrip']
     template_name = "./photanic_app/foto_form.html"
     success_url = reverse_lazy('fotos')
     def test_func(self):
@@ -98,12 +104,12 @@ class Detalles_comentarios(DetailView):
 
 class comentcreateview(LoginRequiredMixin, CreateView):
     model = Comentario
-    fields=['Usu','photo','text','time']
+    fields=['user','photo','text','time']
     success_url = reverse_lazy('photos')
 
 class comentUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Comentario
-    fields=['Usu','photo','text','time']
+    fields=['user','photo','text','time']
     success_url = reverse_lazy('coments')
     def test_func(self):
         try:
@@ -129,13 +135,13 @@ class Detalles_valoraciones(DetailView):
 
 class ratecreateview(LoginRequiredMixin, CreateView):
     model = Valoracion
-    fields=['Usu_valo','art_valo','rate']
+    fields=['user_valo','art_valo','rate']
     success_url = reverse_lazy('rates')
     success_url = reverse_lazy('articles')
 
 class rateUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Valoracion
-    fields=['Usu_valo','art_valo','rate']
+    fields=['user_valo','art_valo','rate']
     success_url = reverse_lazy('rates')
     def test_func(self):
         try:
@@ -163,7 +169,11 @@ class articlecreateview(LoginRequiredMixin, CreateView):
     model = Articulo
     form_class = ArticuloForm
     success_url = reverse_lazy('articles')
-    success_url = reverse_lazy('articles')
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy('index'))
 
 class articleUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Articulo
@@ -171,7 +181,7 @@ class articleUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('articles')
     def test_func(self):
         try:
-            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(Usu_art=self.kwargs.get("Usu_art"))
+            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(user_art=self.kwargs.get("user_art"))
         except:
             return False
 
@@ -180,7 +190,7 @@ class articleDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('articles')
     def test_func(self):
         try:
-            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(Usu_art=self.kwargs.get("Usu_art"))
+            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(user_art=self.kwargs.get("user_art"))
         except:
             return False
 

@@ -18,4 +18,4 @@ class ArticuloForm(forms.ModelForm):
 	text = forms.CharField(widget=forms.Textarea(attrs={"rows": 3}))
 	class Meta:
 		model =  Articulo
-		fields = ('title', 'text', 'Usu_art', 'plant_art')
+		fields = ('user','title', 'text', 'plant_art')
