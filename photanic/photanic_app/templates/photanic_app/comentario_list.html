@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-        <center><h1>Plantas</h1></center>
+<header class="masthead">
+  <div class="masthead-heading text-uppercase">Plantas</div>
+</header>
+<center><h1>Listado de plantas</h1></center>
     <body style="background-color:#1d5c00;">
         <center>
         <ul>
-          {% for planta in object_list %}
-          <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ planta.id }}">{{ planta.common_name }}</a>
-          </li>
+          {% for comentario in object_list %}
+          <li style=" list-style-type: none; margin: 0; padding: 0"> <p>Usuario :{{ comentario.user }} Comentario: {{ comentario.text }} Photo:  {{ comentario.photo }}</p> 
+            {% if user.is_staff %}
+            <a href="{% url 'plant-update' planta.pk %}">Modificar</a>
+            {% else %}
+            <p></p>
+            {% endif %}
+          </li> 
           {% empty %}
-          <li>No hay plantas todavía.</li>
+          <li>No hay comentarios todavía.</li>
           {% endfor %}
+          <p></p>
+          <p></p>
         </ul>
         </center>
     </body>
+
 {% endblock %}
