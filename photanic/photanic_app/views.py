@@ -104,8 +104,14 @@ class Detalles_comentarios(DetailView):
 
 class comentcreateview(LoginRequiredMixin, CreateView):
     model = Comentario
-    fields=['user','photo','text','time']
+    form_class = ComentForm
     success_url = reverse_lazy('photos')
+    template_name = "./photanic_app/coment_form.html"
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+        return HttpResponseRedirect(reverse_lazy('coments'))
 
 class comentUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Comentario
@@ -116,6 +122,7 @@ class comentUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
             return Comentario.objects.get(pk=self.request.user.pk)==Comentario.objects.get(pk=self.kwargs.get("pk"))
         except:
             return False
+    
 
 class comentDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Comentario

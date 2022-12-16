@@ -57,7 +57,7 @@ class Comentario(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     photo = models.ForeignKey(Foto, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
-    time = models.DateTimeField()
+    time = models.DateTimeField(auto_now=True)
 
 class Articulo(models.Model):
     title = models.CharField(max_length=50)

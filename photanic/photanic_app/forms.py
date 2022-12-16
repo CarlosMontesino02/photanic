@@ -19,3 +19,11 @@ class ArticuloForm(forms.ModelForm):
 	class Meta:
 		model =  Articulo
 		fields = ('user','title', 'text', 'plant_art')
+	
+class ComentForm(forms.ModelForm):
+	error_css_class = 'error-field'
+	required_css_class = 'required-field'
+	text = forms.CharField(widget=forms.Textarea(attrs={"rows": 3}))
+	class Meta:
+		model =  Comentario
+		fields = ('photo', 'text',)
