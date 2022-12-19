@@ -9,9 +9,10 @@ from django.dispatch import receiver
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
+from django_countries.fields import CountryField
 
 class User(AbstractUser):
-    country = models.CharField(max_length=20)
+    country = CountryField()
     new = 'NW'
     amateur = 'AM'
     profesional = 'PR'
@@ -24,11 +25,13 @@ class User(AbstractUser):
         (master, 'Master'),
     ]
     rank = models.CharField(
+    'Rango*',
     max_length=2,
     choices=RANKS,
     default=amateur,
+    null=True
     )
-    birth_date = models.DateTimeField(auto_now=False, null=True)
+    birth_date = models.DateTimeField('Fecha de nacimiento*',auto_now=False,)
     
     def get_absolute_url(self):
         return reverse('usuarios-detalles', kwargs={'pk': self.pk})

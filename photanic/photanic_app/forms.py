@@ -1,16 +1,19 @@
 from django import forms
 from photanic_app.models import *
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.admin.widgets import AdminDateWidget
+from django.forms.fields import DateField
 
 class UserForm(UserCreationForm):
 	class Meta:
 		model = User
-		fields = ('username','password1','password2','email','country', 'rank', 'birth_date')
+		fields = ('username','password1','password2','email')
 	
 class UserEdit(UserChangeForm):
 	class Meta:
 		model = User
 		fields = ('username','email','country', 'rank', 'birth_date')
+
 	
 class ArticuloForm(forms.ModelForm):
 	error_css_class = 'error-field'

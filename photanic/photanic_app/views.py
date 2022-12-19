@@ -214,7 +214,7 @@ class FormUser(CreateView):
     model = User
     form_class = UserForm
     template_name = "./photanic_app/user_form.html"
-
+    
 class Update_User(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserEdit
