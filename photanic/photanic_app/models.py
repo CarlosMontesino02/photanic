@@ -31,7 +31,7 @@ class User(AbstractUser):
     default=new,
     null=True
     )
-    birth_date = models.DateTimeField('Fecha de nacimiento*',auto_now=False,)
+    birth_date = models.DateTimeField('Fecha de nacimiento*',auto_now=False,null=True)
     
     def get_absolute_url(self):
         return reverse('usuarios-detalles', kwargs={'pk': self.pk})
