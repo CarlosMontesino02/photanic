@@ -33,10 +33,12 @@ class Lista_plantas(ListView):
 class Detalles_plantas(DetailView):
     model = Planta
 
-class plantcreateview(LoginRequiredMixin, CreateView):
+class plantcreateview(UserPassesTestMixin,LoginRequiredMixin, CreateView):
     model = Planta
     fields = ['common_name','kingdom','phylum','clase','order','family','genus','category']
     success_url = reverse_lazy('index')
+    def test_func(self):
+        return self.request.user.is_staff
 
 class plantUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Planta
