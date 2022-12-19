@@ -45,10 +45,7 @@ class plantUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     fields = ['common_name','kingdom','phylum','clase','order','family','genus','category']
     success_url = reverse_lazy('index')
     def test_func(self):
-        try:
-            return Planta.objects.get(pk=self.request.user.pk)==Planta.objects.get(pk=self.kwargs.get("pk"))
-        except:
-            return False
+        return self.request.user.is_staff
 
 class plantDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Planta
