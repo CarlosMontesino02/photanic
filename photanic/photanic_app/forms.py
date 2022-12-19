@@ -4,6 +4,9 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.admin.widgets import AdminDateWidget
 from django.forms.fields import DateField
 
+class DateInput(forms.DateInput):
+	input_type = 'date'
+
 class UserForm(UserCreationForm):
 	class Meta:
 		model = User
@@ -13,6 +16,7 @@ class UserEdit(UserChangeForm):
 	class Meta:
 		model = User
 		fields = ('username','email','country', 'rank', 'birth_date')
+		widgets = {'birth_date' : DateInput()}
 
 	
 class ArticuloForm(forms.ModelForm):
