@@ -15,11 +15,13 @@
   <p>Familia : {{ planta.family }}</p>
   <p>Genus : {{ planta.genus }}</p>
   <p>Categoría : {{ planta.category }}</p>
- 
+{% if user.is_staff %}
 <a href="{% url 'plant-update' planta.pk %}">Modificar</a></td>
 <p></p>
 <a href="{% url 'plant-delete' planta.pk %}">Borrar</a></td>
-
+{% else %}
+<p>Si detecta información erronea contacte con el staff</p>
+{% endif %}
     </center>
 </body>
 {% endblock %}
