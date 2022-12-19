@@ -24,7 +24,7 @@ class search(ListView):
     template_name="photanic_app/search.html"
     def get_queryset(self):
         query = self.request.GET.get("q")
-        object_list=Planta.objects.filter(Q(common_name__in=[query]))
+        object_list=Planta.objects.filter(Q(common_name__icontains=[query]))
         return object_list
 
 class Lista_plantas(ListView):
