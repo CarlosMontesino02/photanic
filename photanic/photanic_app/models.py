@@ -28,7 +28,7 @@ class User(AbstractUser):
     'Rango*',
     max_length=2,
     choices=RANKS,
-    default=amateur,
+    default=new,
     null=True
     )
     birth_date = models.DateTimeField('Fecha de nacimiento*',auto_now=False,)
