@@ -25,7 +25,7 @@ class ArticuloForm(forms.ModelForm):
 	text = forms.CharField(widget=forms.Textarea(attrs={"rows": 3}))
 	class Meta:
 		model =  Articulo
-		fields = ('user','title', 'text', 'plant_art')
+		fields = ('title', 'text', 'plant_art')
 	
 class ComentForm(forms.ModelForm):
 	error_css_class = 'error-field'
