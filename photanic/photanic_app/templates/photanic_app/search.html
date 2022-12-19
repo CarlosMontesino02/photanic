@@ -14,17 +14,15 @@
             <div class="row justify-content-center">
             <!-- Portfolio Items-->
             {% for planta in object_list %}
-                <ul>
-                <li style="list-style: none">Nombre común: {{ planta.common_name }}</li>
-                <li style="list-style: none">Phylum : {{ planta.phylum }}</li>
-                <li style="list-style: none">Clase : {{ planta.clase }}</li>
-                <li style="list-style: none">Familia : {{ planta.family }}</li>
-                <li style="list-style: none">Genus : {{ planta.genus }}</li>
-                <li style="list-style: none">Categoría : {{ planta.category }}</li>
-                </ul></p>
-                <a class="btn btn-primary" href="{% url 'index' %}" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Volver atrás</a>
-
-            </div>
+            <li style=" list-style-type: none; margin: 0; padding: 0"> <a href="{{ planta.pk }}">{{ planta.common_name }}</a> 
+              {% if user.is_staff %}
+              <a href="{% url 'plant-update' planta.pk %}">Modificar</a>
+              {% else %}
+              <p></p>
+              {% endif %}
+            </li> 
+            {% empty %}
+            <li>No hay plantas todavía.</li>
             {% endfor %}</center>
 
         </div>

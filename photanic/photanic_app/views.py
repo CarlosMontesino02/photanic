@@ -24,7 +24,7 @@ class search(ListView):
     template_name="photanic_app/search.html"
     def get_queryset(self):
         query = self.request.GET.get("q")
-        object_list=Planta.objects.filter(Q(common_name__icontains=[query]))
+        object_list=Planta.objects.filter(Q(common_name__icontains=query))
         return object_list
 
 class Lista_plantas(ListView):
@@ -188,7 +188,8 @@ class articleUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('articles')
     def test_func(self):
         try:
-            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(user_art=self.kwargs.get("user_art"))
+
+            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(user=Articulo.user.get("username"))
         except:
             return False
 
