@@ -141,16 +141,16 @@ class Detalles_valoraciones(DetailView):
     model = Valoracion
 
 class ratecreateview(LoginRequiredMixin,CreateView):
-    login_url = 'login'
+    login_url = 'user-add'
     model = Valoracion
-    fields = ['puntuacion']
+    fields = ['rate']
     def form_valid(self, form):
         url=self.request.get_full_path()
         urlcad=url.split("/")
         objeto=Articulo.objects.get(pk=int(urlcad[3]))
-        form.instance.valoproduc = objeto
+        form.instance.valoart = objeto
         form.instance.user = self.request.user
-        list = Valoracion.objects.filter(user=self.request.user, valoproduc=objeto)
+        list = Valoracion.objects.filter(user=self.request.user, valoart=objeto)
         if len(list) == 0:
             form.save()
             return redirect('articles_details', pk=urlcad[3])
@@ -162,7 +162,7 @@ class ratecreateview(LoginRequiredMixin,CreateView):
         objeto=Articulo.objects.get(pk=int(urlcad[3]))
         context = super(ratecreateview, self).get_context_data(**kwargs)
         if not self.request.user.is_anonymous:
-            list = Valoracion.objects.filter(user=self.request.user, valoproduc=objeto)
+            list = Valoracion.objects.filter(user=self.request.user, valoart=objeto)
             if len(list) == 0:  
                 context['valorado'] = False
             else:   
