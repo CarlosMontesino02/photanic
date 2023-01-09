@@ -13,6 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.core.exceptions import PermissionDenied
 
 def index (request):
     return render(request, 'photanic_app/index.html')
@@ -139,11 +140,34 @@ class Lista_valoraciones(ListView):
 class Detalles_valoraciones(DetailView):
     model = Valoracion
 
-class ratecreateview(LoginRequiredMixin, CreateView):
+class ratecreateview(LoginRequiredMixin,CreateView):
+    login_url = 'login'
     model = Valoracion
-    fields=['user_valo','art_valo','rate']
-    success_url = reverse_lazy('rates')
-    success_url = reverse_lazy('articles')
+    fields = ['puntuacion']
+    def form_valid(self, form):
+        url=self.request.get_full_path()
+        urlcad=url.split("/")
+        objeto=Articulo.objects.get(pk=int(urlcad[3]))
+        form.instance.valoproduc = objeto
+        form.instance.user = self.request.user
+        list = Valoracion.objects.filter(user=self.request.user, valoproduc=objeto)
+        if len(list) == 0:
+            form.save()
+            return redirect('articles_details', pk=urlcad[3])
+        else:
+            raise PermissionDenied
+    def get_context_data(self, **kwargs):
+        url=self.request.get_full_path()
+        urlcad=url.split("/")
+        objeto=Articulo.objects.get(pk=int(urlcad[3]))
+        context = super(ratecreateview, self).get_context_data(**kwargs)
+        if not self.request.user.is_anonymous:
+            list = Valoracion.objects.filter(user=self.request.user, valoproduc=objeto)
+            if len(list) == 0:  
+                context['valorado'] = False
+            else:   
+                context['valorado'] = True
+        return context
 
 class rateUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Valoracion

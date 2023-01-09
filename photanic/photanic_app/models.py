@@ -70,8 +70,9 @@ class Articulo(models.Model):
     def __str__(self):
         return self.title
 
+rates=[(1,1),(2,2),(3,3),(4,4),(5,5)]
 class Valoracion(models.Model):
     user_valo = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     art_valo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
-    rate = models.IntegerField()
+    rate = models.IntegerField(choices=rates)
     # Create your models here.
