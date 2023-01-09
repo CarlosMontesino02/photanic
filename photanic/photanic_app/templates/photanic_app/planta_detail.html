@@ -16,9 +16,9 @@
   <p>Genus : {{ planta.genus }}</p>
   <p>Categoría : {{ planta.category }}</p>
 {% if user.is_staff %}
-<a href="{% url 'plant-update' planta.pk %}">Modificar</a></td>
+<a href="{% url 'plant-update' planta.pk %}" class="button">Modificar</a>
 <p></p>
-<a href="{% url 'plant-delete' planta.pk %}">Borrar</a></td>
+<a href="{% url 'plant-delete' planta.pk %}" class="button">Borrar</a>
 {% else %}
 <p>Si detecta información erronea contacte con el staff</p>
 {% endif %}

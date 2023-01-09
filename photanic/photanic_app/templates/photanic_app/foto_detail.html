@@ -15,10 +15,10 @@
     <p>Descripcion : {{ foto.descrip }}</p>
       <p></p>
       {% if user.is_authenticated %}
-      <a href="{% url 'foto-update' foto.pk %}">Modificar</a>
-      <a href="{% url 'foto-delete' foto.pk %}">Borrar</a>
-      <a href="{% url 'coment-add' %}">Comentar</a>
-      <a href="{% url 'coments' %}">Comentarios</a>
+      <a href="{% url 'foto-update' foto.pk %}" class="button">Modificar</a>
+      <a href="{% url 'foto-delete' foto.pk %}" class="button">Borrar</a>
+      <a href="{% url 'coment-add' %}" class="button">Comentar</a>
+      <a href="{% url 'coments' %}" class="button">Comentarios</a>
       {% else %}
       <p></p>
       {% endif %}
