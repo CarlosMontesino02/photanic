@@ -17,7 +17,7 @@
           {% endfor %}
           <p></p>
           {% if user.is_authenticated %}
-          <center><a href="{% url 'article-add' %}">Sube un artículo</a></center>
+          <center><a href="{% url 'article-add' %}" class="button">Sube un artículo</a></center>
           {% else %}
           <p>Tienes que <a href="{% url 'user-add' %}" style="font-size: 17px;">registrarte</a> para subir un artículo</p>
           {% endif %}

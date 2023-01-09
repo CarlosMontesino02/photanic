@@ -15,7 +15,7 @@
           <li>No hay fotos todavía.</li>
           {% endfor %}
           {% if user.is_authenticated %}
-          <center><a href="{% url 'foto-add' %}">Sube una foto</a></center>
+          <center><a href="{% url 'foto-add' %}" class="button">Sube una foto</a></center>
           {% else %}
           <p>Tienes que <a href="{% url 'user-add' %}" style="font-size: 17px;">registrarte</a> para subir una foto</p>
           {% endif %}
