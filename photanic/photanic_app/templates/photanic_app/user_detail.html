@@ -17,6 +17,10 @@
       <p></p>
       {% endif %}
       <p></p>
+      <p>Articulos escritos por este usuario:</p>
+      {% for articulo in articulos %}
+      <li style="list-style: none">{{ articulo }}</li>
+      {% endfor %}
     </ul>
     </center>
 </body>
