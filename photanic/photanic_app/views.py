@@ -233,6 +233,12 @@ class Lista_usuarios(LoginRequiredMixin, ListView):
 class Detalles_usuarios(LoginRequiredMixin, DetailView):
     model = User
 
+    def get_context_data(self, **kwargs):
+        queryset = User.objects.all()
+        context_object_name = 'user'
+        context = super().get_context_data(**kwargs)
+        context['articulos']=Articulo.objects.filter(user=self.request.user.pk)
+        return context
 #Registro
 class FormUser(CreateView):
     model = User
