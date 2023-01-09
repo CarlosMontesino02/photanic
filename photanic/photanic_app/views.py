@@ -73,7 +73,7 @@ class fotocreateview(LoginRequiredMixin, CreateView):
         obj = form.save(commit=False)
         obj.user = self.request.user
         obj.save()
-        return HttpResponseRedirect(reverse_lazy('index'))
+        return HttpResponseRedirect(reverse_lazy('fotos'))
 
 class fotoUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Foto
