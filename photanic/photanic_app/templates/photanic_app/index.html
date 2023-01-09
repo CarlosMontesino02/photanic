@@ -5,7 +5,9 @@
     <div class="container">
         <div class="masthead-subheading">¡Bienvenido a Photanic!</div>
         <div class="masthead-heading text-uppercase">Encantado de conocerte</div>
+        {% if not request.user.is_authenticated %}
         <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'user-add' %}">¡Regístrame!</a>
+        {% endif %}
     </div>
 </header>
 <!-- Services-->
