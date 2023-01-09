@@ -12,7 +12,7 @@
       <p>Rango : {{ user.rank }}</p>
       <p>Fecha de nacimiento : {{ user.birth_date }} </p>
       {% if request.user.username == user.username %}
-      <p>Información incorrecta? <a href="{% url 'usuarios-update' user.pk %}">Modificar</a></p>
+      <p>Información incorrecta? <a href="{% url 'usuarios-update' user.pk %}" class="button">Modificar</a></p>
       {% else %}
       <p></p>
       {% endif %}
