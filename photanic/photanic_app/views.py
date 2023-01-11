@@ -67,13 +67,14 @@ class Detalles_fotos(DetailView):
 
 class fotocreateview(LoginRequiredMixin, CreateView):
     model = Foto
-    fields = ['plant','img','place','descrip']
-    success_url = reverse_lazy('fotos')
+    form_class = FotoForm
+    template_name = "./photanic_app/foto_form.html"
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = self.request.user
         obj.save()
         return HttpResponseRedirect(reverse_lazy('fotos'))
+
 
 class fotoUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Foto
@@ -203,7 +204,7 @@ class articlecreateview(LoginRequiredMixin, CreateView):
         obj = form.save(commit=False)
         obj.user = self.request.user
         obj.save()
-        return HttpResponseRedirect(reverse_lazy('index'))
+        return HttpResponseRedirect(reverse_lazy('articles'))
 
 class articleUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Articulo

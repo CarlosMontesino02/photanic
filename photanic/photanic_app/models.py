@@ -52,19 +52,20 @@ class Foto(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     plant = models.ForeignKey(Planta, on_delete=models.CASCADE)
     img = models.ImageField(upload_to ='img/')
-    place = models.CharField(max_length=23)
+    place = CountryField()
     descrip = models.CharField(max_length=200)
     time_stamp = models.DateTimeField(auto_now=True)
 
 class Comentario(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     photo = models.ForeignKey(Foto, on_delete=models.CASCADE)
-    text = models.CharField(max_length=200)
+    text = models.CharField(max_length=200,blank=False)
     time = models.DateTimeField(auto_now=True)
 
 class Articulo(models.Model):
-    title = models.CharField(max_length=50)
-    text = models.CharField(max_length=1500)
+    title = models.CharField(max_length=50, blank=False)
+    text = models.CharField(max_length=1500,blank=False)
+    img = models.ImageField(upload_to ='img/', blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     plant_art = models.ForeignKey(Planta, on_delete=models.CASCADE)
     def __str__(self):
