@@ -10,6 +10,11 @@
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">{{ articulo.title }}</h2>
                 <h3 class="section-subheading text-muted">{{ articulo.text }} </h3>
+                {% if articulo.img %}
+                <p><img src="/media/{{ articulo.img }}" width="400" height="300"></p>
+                {% else %}
+                <p></p>
+                {% endif %}
             </div>
     </section>
     <p></p>
