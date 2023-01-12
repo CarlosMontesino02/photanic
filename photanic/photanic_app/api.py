@@ -36,7 +36,7 @@ class PlantViewSet(viewsets.ModelViewSet):
 class FotoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Foto
-        fields = ['Usu','plant','img','place','descrip','time_stamp']
+        fields = ['user','plant','img','place','descrip','time_stamp']
 
 class FotoViewSet(viewsets.ModelViewSet):
     queryset = Foto.objects.all()
@@ -48,7 +48,7 @@ class FotoViewSet(viewsets.ModelViewSet):
 class ArticuloSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Articulo
-        fields = ['title', 'text', 'Usu_art', 'plant_art']
+        fields = ['title', 'text', 'user_art', 'plant_art']
         authentication_classes = [SessionAuthentication, BasicAuthentication]
         permission_classes = [IsAuthenticated]
 
