@@ -17,7 +17,8 @@
           {% if user.is_authenticated %}
           <center><a href="{% url 'foto-add' %}" class="button">Sube una foto</a></center>
           {% else %}
-          <p>Tienes que <a href="{% url 'user-add' %}" style="font-size: 17px;">registrarte</a> para subir una foto</p>
+          <p></p>
+          <p>Tienes que  <a href=" {% url 'user-add' %} "><button type="button"class="button-62">registrarte</button></a>  para subir una foto</p>
           {% endif %}
         </center>
     </body>

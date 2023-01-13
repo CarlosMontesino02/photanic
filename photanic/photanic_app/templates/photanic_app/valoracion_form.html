@@ -1,11 +1,18 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    {% if not valorado %}
-        <form method="post">{% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Save">
-        </form>
-    {% else %}
-        <p>El articulo ha sido valorado anteriormente</p>
-    {% endif %}
+<header class="masthead">
+  <div class="masthead-heading text-uppercase">¿Qué te ha parecido el artículo que has leido?</div>
+</header>
+<div class="formulario">
+  <p></p>
+  <center>  
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Valorar</button>
+  </form>
+</center>
+
+</div>
 {% endblock %}
