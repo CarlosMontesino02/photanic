@@ -4,6 +4,7 @@
   <div class="masthead-heading text-uppercase">Fotos</div>
 </header>
  <center><h1>Lista de fotos</h1></center>
+ {% if user.is_authenticated %}<center><a href="{% url 'foto-add' %}" class="button">Sube una foto</a></center>{% endif %}
     <body style="background-color:#1d5c00;">
         <center>
           {% for foto in object_list %}
@@ -15,7 +16,6 @@
           <li>No hay fotos todavía.</li>
           {% endfor %}
           {% if user.is_authenticated %}
-          <center><a href="{% url 'foto-add' %}" class="button">Sube una foto</a></center>
           {% else %}
           <p></p>
           <p>Tienes que  <a href=" {% url 'user-add' %} "><button type="button"class="button-62">registrarte</button></a>  para subir una foto</p>

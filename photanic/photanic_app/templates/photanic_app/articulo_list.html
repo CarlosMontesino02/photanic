@@ -4,6 +4,7 @@
   <div class="masthead-heading text-uppercase">Artículos</div>
 </header>
  <center><h1>Lista de artícluos</h1></center>
+ {% if user.is_authenticated %}<center><a href="{% url 'articulo-add' %}" class="button">Sube una foto</a></center>{% endif %}
     <body style="background-color:#1d5c00;">
         <center>
         <ul>
@@ -17,7 +18,6 @@
           {% endfor %}
           <p></p>
           {% if user.is_authenticated %}
-          <center><a href="{% url 'article-add' %}" class="button">Sube un artículo</a></center>
           {% else %}
           <p>Tienes que <a href=" {% url 'user-add' %} "><button type="button"class="button-62">registrarte</button></a> para subir un artículo</p>
           {% endif %}
