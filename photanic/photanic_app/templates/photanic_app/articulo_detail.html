@@ -20,8 +20,10 @@
     <p></p>
     <p>creado por {{ articulo.user }} sobre {{ articulo.plant_art }}</p>
     {% if request.user.is_authenticated %}
+   {% if request.user.pk ==  articulo.user.pk %}
     <a href="{% url 'article-update' articulo.pk %}" class="button">Modificar</a>
     <a href="{% url 'article-delete' articulo.pk %}" class="button">Borrar</a>
+   {% endif %}
     <p><b>Rating:</b></p>
         <p style="font-size: 40px;">{{ object.rating }}/5</p>
         <p>
