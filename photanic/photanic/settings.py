@@ -25,7 +25,7 @@ AUTH_USER_MODEL = 'photanic_app.User'
 SECRET_KEY = 'django-insecure-4!$2pic6un-=4)b+0rh8clwzp0!t^wd@gl#2+w#eux!qv+mz!&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*','10.1.2.105', '127.0.0.1', 'pc05-t2.inf']
 #nginx static
