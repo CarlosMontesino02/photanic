@@ -68,12 +68,15 @@ class Articulo(models.Model):
     img = models.ImageField(upload_to ='img/', blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     plant_art = models.ForeignKey(Planta, on_delete=models.CASCADE)
+    rating = models.DecimalField(max_digits=2, decimal_places=1, default=0)
     def __str__(self):
         return self.title
+    class Meta:
+        order_with_respect_to = 'rating'
 
 rates=[(1,1),(2,2),(3,3),(4,4),(5,5)]
 class Valoracion(models.Model):
-    user_valo = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     art_valo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
     rate = models.IntegerField(choices=rates)
     # Create your models here.

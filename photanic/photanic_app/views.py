@@ -133,68 +133,34 @@ class comentDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
             return Comentario.objects.get(pk=self.request.user.pk)==Comentario.objects.get(pk=self.kwargs.get("pk"))
         except:
             return False
-#Valoraciones
-
-class Lista_valoraciones(ListView):
-    model = Valoracion
-
-class Detalles_valoraciones(DetailView):
-    model = Valoracion
-
-class ratecreateview(LoginRequiredMixin,CreateView):
-    login_url = 'user-add'
-    model = Valoracion
-    fields = ['rate']
-    def form_valid(self, form):
-        url=self.request.get_full_path()
-        urlcad=url.split("/")
-        objeto=Articulo.objects.get(pk=int(urlcad[3]))
-        form.instance.valoart = objeto
-        form.instance.user = self.request.user
-        list = Valoracion.objects.filter(user=self.request.user, valoart=objeto)
-        if len(list) == 0:
-            form.save()
-            return redirect('articles_details', pk=urlcad[3])
-        else:
-            raise PermissionDenied
-    def get_context_data(self, **kwargs):
-        url=self.request.get_full_path()
-        urlcad=url.split("/")
-        objeto=Articulo.objects.get(pk=int(urlcad[3]))
-        context = super(ratecreateview, self).get_context_data(**kwargs)
-        if not self.request.user.is_anonymous:
-            list = Valoracion.objects.filter(user=self.request.user, valoart=objeto)
-            if len(list) == 0:  
-                context['valorado'] = False
-            else:   
-                context['valorado'] = True
-        return context
-
-class rateUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
-    model = Valoracion
-    fields=['user_valo','art_valo','rate']
-    success_url = reverse_lazy('rates')
-    def test_func(self):
-        try:
-            return Valoracion.objects.get(pk=self.request.user.pk)==Valoracion.objects.get(pk=self.kwargs.get("pk"))
-        except:
-            return False
-
-class rateDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
-    model = Valoracion
-    success_url = reverse_lazy('rates')
-    def test_func(self):
-        try:
-            return Valoracion.objects.get(pk=self.request.user.pk)==Valoracion.objects.get(pk=self.kwargs.get("pk"))
-        except:
-            return False
-
 #Articulos
 class Lista_Articulos(ListView):
     model = Articulo
 
 class Detalles_articulos(DetailView):
     model = Articulo
+    def get_object(self):
+        obj = super().get_object()
+        todos_ratings= obj.valoracion_set.all()
+        if len( todos_ratings) != 0:
+            cuenta=0
+            for punto in  todos_ratings:
+                cuenta+=int(punto.rate)
+            if not obj.rating == int(cuenta)/len( todos_ratings): #Calculo de la valoración
+                obj.rating = int(cuenta)/len(todos_ratings)
+                obj.save()
+                obj=Articulo.objects.get(title=obj) #Autoguardamos con el título del articulo
+        objeto_final=obj
+        return objeto_final
+    def get_context_data(self, **kwargs):
+        context = super(Detalles_articulos, self).get_context_data(**kwargs)
+        if not self.request.user.is_anonymous:
+            list = Valoracion.objects.filter(user=self.request.user, art_valo=super().get_object())
+            if len(list) == 0:
+                context['already'] = False
+            else:   
+                context['already'] = True
+        return context
 
 class articlecreateview(LoginRequiredMixin, CreateView):
     model = Articulo
@@ -224,6 +190,63 @@ class articleDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
         try:
             return User.objects.get(username=self.request.user.username)==Articulo.objects.get(user_art=self.kwargs.get("user_art"))
         except:
+            return False    
+
+
+#Valoraciones
+
+class Lista_valoraciones(ListView):
+    model = Valoracion
+
+class Detalles_valoraciones(DetailView):
+    model = Valoracion
+
+class ratecreateview(LoginRequiredMixin,CreateView):
+    login_url = 'user-add'
+    model = Valoracion
+    fields = ['rate']
+    def form_valid(self, form):
+        url=self.request.get_full_path()
+        urlcad=url.split("/")
+        objeto=Articulo.objects.get(pk=int(urlcad[3]))
+        form.instance.art_valo = objeto
+        form.instance.user = self.request.user
+        list = Valoracion.objects.filter(user=self.request.user, art_valo=objeto)
+        if len(list) == 0:
+            form.save()
+            return redirect('articles_details', pk=urlcad[3])
+        else:
+            raise PermissionDenied
+    def get_context_data(self, **kwargs):
+        url=self.request.get_full_path()
+        urlcad=url.split("/")
+        objeto=Articulo.objects.get(pk=int(urlcad[3]))
+        context = super(ratecreateview, self).get_context_data(**kwargs)
+        if not self.request.user.is_anonymous:
+            list = Valoracion.objects.filter(user=self.request.user, art_valo=objeto)
+            if len(list) == 0:  
+                context['already'] = False
+            else:   
+                context['already'] = True
+        return context
+
+class rateUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
+    model = Valoracion
+    fields=['user_valo','art_valo','rate']
+    success_url = reverse_lazy('rates')
+    def test_func(self):
+        try:
+            return Valoracion.objects.get(pk=self.request.user.pk)==Valoracion.objects.get(pk=self.kwargs.get("pk"))
+        except:
+            return False
+
+class rateDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
+    model = Valoracion
+    success_url = reverse_lazy('rates')
+    def test_func(self):
+        try:
+            return Valoracion.objects.get(pk=self.request.user.pk)==Valoracion.objects.get(pk=self.kwargs.get("pk"))
+        except:
             return False
 
 #Usuarios
@@ -238,7 +261,7 @@ class Detalles_usuarios(LoginRequiredMixin, DetailView):
         queryset = User.objects.all()
         context_object_name = 'user'
         context = super().get_context_data(**kwargs)
-        context['articulos']=Articulo.objects.filter(user=self.request.user.pk)
+        context['articulos']=Articulo.objects.filter(user=self.kwargs.get("pk"))
         return context
 #Registro
 class FormUser(CreateView):

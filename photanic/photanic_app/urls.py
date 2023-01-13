@@ -41,7 +41,7 @@ urlpatterns = [
     #Valoraciones
     path('rate', Lista_comentarios.as_view(), name="rates"),
     path('rate/<int:pk>/', Detalles_valoraciones.as_view(), name="rates_details"),
-    path('rate/add/', ratecreateview.as_view(), name="rate-add"),
+    path('rate/add/<int:pk>/', ratecreateview.as_view(), name="rate-add"),
     path('rate/<int:pk>/update/', rateUpdateView.as_view(), name='rate-update'),
     path('rate/<int:pk>/delete/', rateDeleteView.as_view(), name='rate-delete'),
 
