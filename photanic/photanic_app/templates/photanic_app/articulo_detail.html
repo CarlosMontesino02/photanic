@@ -23,7 +23,7 @@
     <a href="{% url 'article-update' articulo.pk %}" class="button">Modificar</a>
     <a href="{% url 'article-delete' articulo.pk %}" class="button">Borrar</a>
     <p><b>Rating:</b></p>
-        <p>{{ object.rating }}/5</p>
+        <p style="font-size: 40px;">{{ object.rating }}/5</p>
         <p>
         {% if user.is_authenticated %}
           {% if not already %}
