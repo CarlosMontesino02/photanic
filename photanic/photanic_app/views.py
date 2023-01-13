@@ -52,10 +52,7 @@ class plantDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Planta
     success_url='/plant/'
     def test_func(self):
-        try:
-            return Planta.objects.get(pk=self.request.user.pk)==Planta.objects.get(pk=self.kwargs.get("pk"))
-        except:
-            return False
+        return self.request.user.is_staff
 
 #Fotos
 class Lista_fotos(ListView):
@@ -83,7 +80,7 @@ class fotoUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('fotos')
     def test_func(self):
         try:
-            return Foto.objects.get(pk=self.request.user.pk)==Foto.objects.get(pk=self.kwargs.get("pk"))
+            return User.objects.get(pk=self.request.user.pk)==Foto.objects.get(pk=self.kwargs.get("pk")).user
         except:
             return False
 
@@ -92,7 +89,7 @@ class fotoDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     success_url='/foto/'
     def test_func(self):
         try:
-            return Foto.objects.get(pk=self.request.user.pk)==Foto.objects.get(pk=self.kwargs.get("pk"))
+            return User.objects.get(pk=self.request.user.pk)==Foto.objects.get(pk=self.kwargs.get("pk")).user
         except:
             return False
 #Comentario
@@ -120,7 +117,7 @@ class comentUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('coments')
     def test_func(self):
         try:
-            return Comentario.objects.get(pk=self.request.user.pk)==Comentario.objects.get(pk=self.kwargs.get("pk"))
+            return User.objects.get(pk=self.request.user.pk)==Comentario.objects.get(pk=self.kwargs.get("pk")).user
         except:
             return False
     
@@ -130,7 +127,7 @@ class comentDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('coments')
     def test_func(self):
         try:
-            return Comentario.objects.get(pk=self.request.user.pk)==Comentario.objects.get(pk=self.kwargs.get("pk"))
+            return User.objects.get(pk=self.request.user.pk)==Comentario.objects.get(pk=self.kwargs.get("pk")).user
         except:
             return False
 #Articulos
@@ -178,17 +175,17 @@ class articleUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('articles')
     def test_func(self):
         try:
-
-            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(user=Articulo.user.get("username"))
+             return User.objects.get(pk=self.request.user.pk)==Articulo.objects.get(pk=self.kwargs.get("pk")).user
         except:
             return False
+
 
 class articleDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Articulo
     success_url = reverse_lazy('articles')
     def test_func(self):
         try:
-            return User.objects.get(username=self.request.user.username)==Articulo.objects.get(user_art=self.kwargs.get("user_art"))
+            return User.objects.get(pk=self.request.user.pk)==Articulo.objects.get(pk=self.kwargs.get("pk")).user
         except:
             return False    
 
