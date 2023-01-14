@@ -44,9 +44,9 @@
 <body>
 <!-- partial:index.partial.html -->
 <div class="article-meta">
-	<p class="byline">Por {{ articulo.user }}</p>
+	<p class="byline" style="font-weight: bold;">Por {{ articulo.user }}</p>
 	<!--<p class="dateline">June 21, 2021</p>-->
-    <p class="dateline"> sobre {{ articulo.plant_art }}</p>
+    <p class="dateline" style="font-weight: bold;"> sobre {{ articulo.plant_art }}</p>
 </div>
 
 <h2 class="subhead">{{ articulo.title }}</h2>
@@ -80,5 +80,15 @@
   </p>
 {% endif %}
 {% endfor %}
-</footer>
+{% if request.user.is_authenticated %}
+{% if request.user.pk ==  articulo.user.pk %}
+<br>
+<br>
+<p>¿Quieres borrar o modificar tu artículo?</p>
+<p>
+    <a href="{% url 'article-update' articulo.pk %}" class="button-66">Modificar</a>
+<a href="{% url 'article-delete' articulo.pk %}" class="button-66">Borrar</a>
+</p>
+{% endif %}
+{% endif %}
 </html>
