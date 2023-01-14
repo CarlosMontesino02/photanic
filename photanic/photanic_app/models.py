@@ -64,7 +64,7 @@ class Comentario(models.Model):
 
 class Articulo(models.Model):
     title = models.CharField(max_length=50, blank=False)
-    text = models.CharField(max_length=1500,blank=False)
+    text = models.CharField(max_length=5000,blank=False)
     img = models.ImageField(upload_to ='img/', blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     plant_art = models.ForeignKey(Planta, on_delete=models.CASCADE)
