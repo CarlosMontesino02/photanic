@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Noticia+Text&display=swap");
+html {
+	background-color:#1d5c00;
+	background-size: 0.25rem 0.25rem;
+}
+body {
+    background-color:#ffffff;
+	width: 100%;
+	max-width: 800px;
+	font-family: sans-serif;
+	padding-bottom: 10vw;
+	margin: 0 auto;
+	box-shadow: 0 0 300px rgb(20, 70, 0);
+}
+
+h1 {
+	column-span: all;
+	background: rgb(16, 58, 0);
+	color: white;
+	font-size: 5vw;
+	margin: 0;
+	padding-left: 1rem;
+    border-color: rgb(12, 141, 0);
+    border-width: 1px;
+}
+.button-62 {
+  background: linear-gradient(to bottom right, #318a27, #084200);
+  border-radius: 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+.article-meta {
+	column-span: all;
+	padding-right: 1rem;
+	padding-bottom: 1rem;
+}
+.article-meta * {
+	display: inline-block;
+	vertical-align: middle;
+}
+.article-meta svg {
+	float: right;
+	margin-top: -3rem;
+	filter: saturate(0) contrast(5);
+	border-radius: 50%;
+	border: 0.5rem solid black;
+	box-shadow: inset 0 0 0 2px black;
+	box-sizing: border-box;
+	transition: 0.75s;
+}
+.article-meta svg:hover {
+	filter: saturate(1) contrast(1);
+}
+.article-meta p {
+	margin: 0.25rem 0;
+}
+.article-meta span {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+h2 {
+	background: rgb(18, 88, 0);
+	color: white;
+	font-size: 2rem;
+	column-span: all;
+	padding: 1rem;
+	width: fit-content;
+	max-width: 75%;
+}
+
+figure {
+	width: max(50%, 350px);
+	float: right;
+	padding: 0 1rem;
+	margin: 0;
+}
+img {
+	width: 100%;
+	filter: grayscale(0) contrast(0.8);
+	transition: 0.75s;
+}
+img:hover {
+	filter: grayscale(0) contrast(1);
+}
+figcaption {
+	font-size: 0.75rem;
+}
+
+p {
+	line-height: 1.5rem;
+	padding: 0 1.5rem;
+	font-family: "Noticia Text", serif;
+}
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: rgb(18, 88, 0);
+      overflow: hidden;
+    }
+    
+    /* Style the links inside the navigation bar */
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      font-family: "Montserrat";
+      font-weight: bold;
+    }
+    
+    /* Change the color of links on hover */
+    .topnav a:hover {
+      color: rgb(255, 255, 255);
+    }
+    
+    /* Add a color to the active/current link */
+    .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+    }
+    .img{
+        width:10%;
+        height:16%;
+    }
