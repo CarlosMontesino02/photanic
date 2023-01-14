@@ -11433,7 +11433,7 @@ p {
     height: 4rem;
     transition: height 0.3s ease-in-out;
     background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 25px;
+    border-radius: 12px;
   }
   #mainNav.navbar-shrink {
     padding-top: 1rem;
