@@ -12,6 +12,7 @@ from django.urls import reverse
 from django_countries.fields import CountryField
 
 class User(AbstractUser):
+    email = models.EmailField(unique=True)
     country = CountryField()
     new = 'NW'
     amateur = 'AM'
