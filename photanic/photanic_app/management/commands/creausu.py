@@ -8,14 +8,17 @@ class Command(BaseCommand):
         parser.add_argument('total', type=int)
     
     def handle(self, *args, **kwargs):
-        usernames = ['abusivesimplistic','aircraft quadriceps',
-'anyway-guillemot','booger$scruined','earnest-bollard','eyeglasses*abundant',
-'gravelly.unripe','sandalunderstood!','highjumptogether','suffix_pallograph',
+        usernames = ['Mastermind434','LeBronYames',
+'Yuri Tarded','MrPoPo','Julian','Joe Mama',
+'Ligma','sandalunderstood!','highjumptogether','suffix_pallograph',
 'prettying^dismiss','limitation_dromond','miserable_wussle','purring.rostary',
 'scaffoldinglukewarm','sledding congress','turtlegrapping','walloverpottery',
 'wrestlers_scrawny']
-        cont=1
+        cont=0
+        mail=get_random_string(5)
+        dominio=get_random_string(5)
+        email= mail+"@"+dominio+".com"
         total = kwargs['total']
         for i in range(total):
-            User.objects.create_user(username=usernames[cont], email='ben@ben.com', password='Contraseña1234')
+            User.objects.create_user(username=usernames[cont], email=email, password='Contraseña1234')
             cont+=1
