@@ -15,10 +15,10 @@ class Command(BaseCommand):
 'scaffoldinglukewarm','sledding congress','turtlegrapping','walloverpottery',
 'wrestlers_scrawny']
         cont=0
-        mail=get_random_string(5)
-        dominio=get_random_string(5)
-        email= mail+"@"+dominio+".com"
         total = kwargs['total']
         for i in range(total):
+            mail=get_random_string(5)
+            dominio=get_random_string(5)
+            email= mail+"@"+dominio+".com"
             User.objects.create_user(username=usernames[cont], email=email, password='Contraseña1234')
             cont+=1
