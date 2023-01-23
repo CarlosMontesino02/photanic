@@ -35,6 +35,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 INSTALLED_APPS = [
     'photanic_app.apps.PhotanicAppConfig',
+    'wag_photanic.apps.WagPhotanicConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,19 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'django_countries',
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail',
+    'modelcluster',
+    'taggit',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'photanic_app.User'
@@ -55,10 +69,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'photanic.urls'
-
+WAGTAIL_SITE_NAME = 'wag_photanic'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
