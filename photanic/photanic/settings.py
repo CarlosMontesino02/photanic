@@ -30,7 +30,11 @@ DEBUG = False
 ALLOWED_HOSTS = ['*','10.1.2.105', '127.0.0.1', 'pc05-t2.inf']
 #nginx static
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-
+#LDAP
+AUTHENTICATION_BACKENDS = [
+    "django_auth_ldap.backend.LDAPBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 # Application definition
 
 INSTALLED_APPS = [
