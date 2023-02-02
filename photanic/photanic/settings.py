@@ -34,7 +34,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 ##########################################################################
 #ldap
 # Baseline configuration.
-AUTH_LDAP_SERVER_URI = "ldap://3.93.147.153:1389"
+AUTH_LDAP_SERVER_URI = "ldap://127.0.0.1:1389"
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
     "ou=users,dc=example,dc=com", ldap.SCOPE_SUBTREE, "(uid=%(user)s)"
 )
