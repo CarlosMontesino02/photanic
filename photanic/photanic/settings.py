@@ -13,6 +13,7 @@ import ldap
 from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 from pathlib import Path
 import os
+import django_extensions
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 #USUARIO
@@ -35,15 +36,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 #ldap
 # Baseline configuration.
 AUTH_LDAP_SERVER_URI = "ldap://127.0.0.1:1389"
+
+AUTH_LDAP_BIND_DN = "cn=admin,dc=example,dc=org"
+AUTH_LDAP_BIND_PASSWORD = "adminpassword"
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
-    "ou=users,dc=example,dc=com", ldap.SCOPE_SUBTREE, "(uid=%(user)s)"
+    "ou=users,dc=example,dc=org", ldap.SCOPE_SUBTREE, "(cn=%(user)s)"
 )
 # Or:
 # AUTH_LDAP_USER_DN_TEMPLATE = 'uid=%(user)s,ou=users,dc=example,dc=com'
 
 # Set up the basic group parameters.
 AUTH_LDAP_GROUP_SEARCH = LDAPSearch(
-    "ou=django,ou=groups,dc=example,dc=com",
+    "ou=users,dc=example,dc=org",
     ldap.SCOPE_SUBTREE,
     "(objectClass=groupOfNames)",
 )
@@ -110,6 +114,7 @@ INSTALLED_APPS = [
     'wagtail',
     'modelcluster',
     'taggit',
+    'django_extensions',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'photanic_app.User'
@@ -226,4 +231,3 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 
 }
-
