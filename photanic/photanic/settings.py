@@ -194,30 +194,26 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-MEDIA_URL = '/media/'
-
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,"static"),
-]
+####################Archivos#################################################3
+STATIC_URL = 'static/'
+STATIC_ROOT = 'static/'
+MEDIA_ROOT = 'media/'
+MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static_env","static_root")
 
 #API
 
