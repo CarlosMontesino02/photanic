@@ -112,6 +112,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'django_extensions',
+    'wagtail.api.v2',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'photanic_app.User'
