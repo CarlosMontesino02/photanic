@@ -4,6 +4,8 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
+from wagtail.api import APIField
+from django.contrib.auth.models import Group
 
 
 class BlogPage(Page):
@@ -20,6 +22,11 @@ class BlogPage(Page):
         FieldPanel('date'),
         FieldPanel('intro'),
         FieldPanel('body'),
+    ]
+    api_fields = [
+        APIField('date'),
+        APIField('body'),
+        APIField('intro'),
     ]
 
 # Create your models here.
