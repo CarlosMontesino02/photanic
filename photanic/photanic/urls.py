@@ -10,6 +10,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+from .api import api_router
 from django.contrib import admin
 from django.urls import path, include
 from photanic_app.views import *
@@ -21,7 +23,8 @@ from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    #WagAPI
+    path('api/v2/', api_router.urls),
     #URL de photanic
     path('', include('photanic_app.urls')),
 
@@ -41,5 +44,6 @@ urlpatterns = [
     path('cms/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
     path('pages/', include(wagtail_urls)),
+    
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
