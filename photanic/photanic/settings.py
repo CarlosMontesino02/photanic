@@ -154,7 +154,7 @@ WSGI_APPLICATION = 'photanic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photanic'
+        'NAME': 'photanic',
         'OPTIONS': {
             'service': 'photanic',
             'passfile': '.my_pgpass',
