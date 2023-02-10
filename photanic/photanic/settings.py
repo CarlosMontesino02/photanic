@@ -37,8 +37,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 # Baseline configuration.
 AUTH_LDAP_SERVER_URI = "ldap://localhost:1389"
 
-AUTH_LDAP_BIND_DN = "cn=admin,dc=example,dc=org"
-AUTH_LDAP_BIND_PASSWORD = "adminpassword"
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
     "ou=users,dc=example,dc=org", ldap.SCOPE_SUBTREE, "(uid=%(user)s)"
 )
