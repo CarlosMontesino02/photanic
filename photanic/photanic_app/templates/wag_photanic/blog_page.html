@@ -1,7 +1,7 @@
-{% load static %}
-{% load wagtailcore_tags %}
 <!DOCTYPE html>
+{% load wagtailcore_tags wagtailimages_tags %}
 {% block content %}
+{% load static %}
 <html lang="en" >
 <head>
   <title>Photanic</title>
@@ -22,47 +22,43 @@
   <!-- Google fonts-->
   <!-- Core theme CSS (includes Bootstrap)-->
 </head>
-{% block body_class %}Artículo{% endblock %}
-<body style="background-color:#1d5c00;">
-    <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date }}</p>
-
-    <div class="intro">{{ page.intro }}</div>
-
-    {{ page.body|richtext }}
-
-    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
-</body>
-<!-- Wagtail-->
+    <body id="page-top">
+                <div class="topnav" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <a class="img" href="{% url 'index' %}"><img src="/static/assets/img/icono.png" alt="..." /></a>
+                        <a href="{% url 'plants' %}">Plantas</a>
+                        <a href="{% url 'fotos' %}">Fotos</a>
+                        <a href="{% url 'usuarios-lista' %}">Usuarios</a>
+                        <a href="{% url 'articles' %}">Artículos</a>
+                        {% if request.user.is_authenticated %}
+                        <a href="/usuarios/{{ request.user.pk }}">{{ request.user.username }}</a>
+                        <a href="{% url 'logout' %}">Log Out</a>
+                        {% else %}
+                        <a href="{% url 'login' %}">Log In</a>
+                        <a href="{% url 'user-add' %}">Registrate</a>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+<!--- ----------------------------------------------------- -->
 <body>
-    <!-- partial:index.partial.html -->
-    <div class="article-meta">
-        <p class="byline" style="font-weight: bold;">Por {{ articulo.user }}</p>
-        <!--<p class="dateline">June 21, 2021</p>-->
-        <p class="dateline" style="font-weight: bold;"> sobre {{ articulo.plant_art }}</p>
-    </div>
-    
-    <h2 class="subhead">{{ articulo.title }}</h2>
-    
-    <p>{{ articulo.text }}</p>
-    
-    {% if articulo.img %}
-    <figure><img src="/media/{{ articulo.img }}" />
-        <figcaption>Foto de {{ articulo.user}}</figcaption>
-    </figure>
-    {% else %}
-    <p></p>
-    {% endif %}
-    
-    <!-- full size image: https://images.unsplash.com/flagged/photo-1556339911-7ef846e7db43-->
-    </body>
-    <p><b>Rating:</b></p>
-            <p style="font-size: 40px;">{{ object.rating }}/5</p>
-            <p>
-            {% if user.is_authenticated %}
-              {% if not already %}
-              <a href=" {% url 'rate-add' object.pk  %} "><button type="button"class="button-62">Valorar</button></a>
-              {% endif %}
-            {% endif %}
-    {% for valo in object.valoracion_set.all %}
+<!-- partial:index.partial.html -->
+
+<h2 class="subhead">{{ page.title }}</h2>
+<p>{{ page.date }}</p>
+<div class="intro">{{ page.intro }}</div>
+
+{{ page.body|richtext }}
+
+{% for item in page.gallery_images.all %}
+<div style="float: left; margin: 10px">
+    {% image item.image fill-320x240 %}
+    <p>{{ item.caption }}</p>
+</div>
+{% endfor %}
+
+<!-- full size image: https://images.unsplash.com/flagged/photo-1556339911-7ef846e7db43-->
+</body>
 {% endblock %}
+</html>
