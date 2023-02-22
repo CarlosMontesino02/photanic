@@ -2646,7 +2646,7 @@ header.masthead {
   text-align: center;
   color: #fff;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  background-image: url("../assets/img/header-bg.jpg");
+  background-image: url("../assets/img/header-bg.webp");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
