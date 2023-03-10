@@ -9,7 +9,7 @@ from django.core.mail import BadHeaderError,send_mail
 @receiver(user_logged_in)
 def log_user_login(sender, user, **kwargs):
     try:
-        grupo = Group.objects.get(name='Blogger')
+        grupo = Group.objects.get(name='Bloggers')
         usuario = User.objects.get(username=user)
         c = User.objects.get(username=user).email
     except:
