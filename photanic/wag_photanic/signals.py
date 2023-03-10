@@ -10,13 +10,16 @@ def log_user_login(sender, user, **kwargs):
     try:
         group = Group.objects.get(name='Blogger')
         usu = User.objects.get(username=user)
-        c = User.objects.get(username=user).mail
+        c = User.objects.get(username=user).email
         if not group in usu.groups.all():
                 usu.groups.add(group)
                 usu.save()
-                subject = 'Añadido al grupo Bloggers'
-                mensaje = 'Este mail te informa de que tienes acceso a las caracterśiitcsa del grupo Bloggers'
-                from_email = 'qhgx.ghfaa89@nefyp.com'
-                send_mail(subject,mensaje,from_email, [f'{c}'])
+                send_mail(
+                'Hola!, te hemos asignado al grupo Bloggers',
+                'Apartir de ahora tienes la capacidad de escribir artículos en nuestra aplicación!',
+                'photanic.oficial@gmail.com',
+                [c],
+                fail_silently=False,
+            )
     except:
         print(f"Hubo un error durante la agregación del usuario")
